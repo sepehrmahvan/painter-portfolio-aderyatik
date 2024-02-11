@@ -1,21 +1,19 @@
-import { Route, Routes } from "react-router-dom";
-import { CreateAuthor, Dashboard, Homepage, Register } from "./components";
-import { CreateBook, Request, Response, Users } from "./components/home";
-
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 const App = () => {
-  return (
-    <Routes>
-      <Route path="/" element={<Homepage />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/dashboard/:userId" element={<Dashboard />} />
-      <Route path="/dashboard/:userId/create-auther" element={<CreateAuthor />} />
-      <Route path="/dashboard/:userId/users" element={<Users />} />
-      <Route path="/dashboard/:userId/create-book" element={<CreateBook />} />
-      <Route path="/dashboard/:userId/requests" element={<Request />} />
-      <Route path="/dashboard/:userId/response" element={<Response />} />
-
-    </Routes>
-  );
+  const [Data, setData] = useState([]);
+  const getData = async () => {
+    try {
+      const { data } = await axios.get("http://localhost:5000/api/get-data");
+      setData(data)
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  useEffect(() => {
+    getData(); // Fetch data when the component mounts
+  }, []);
+  return <div>{console.log(Data)}</div>;
 };
 
 export default App;

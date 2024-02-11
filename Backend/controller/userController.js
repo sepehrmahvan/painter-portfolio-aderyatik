@@ -39,6 +39,16 @@ exports.updateUser = async (req, res, next) => {
   }
 };
 
+exports.getInfo = async(req,res)=>{
+  try {
+    const data = await User.find();
+    res.status(200).json(data);
+  } catch (err) {
+    console.log(err)
+    res.status(400).json("مشکلی سمت سرور پیش آمده");
+  }
+}
+
 exports.handleResetPassword = async (req, res, next) => {
   const userId = "65b50acf8257bc5b5327263b";
 
