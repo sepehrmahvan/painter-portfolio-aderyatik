@@ -1,16 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-import "./index.css";
-import { BrowserRouter } from "react-router-dom";
-import 'react-confirm-alert/src/react-confirm-alert.css';
-import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
+import "./main.scss";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./Home";
+import { MyProvider } from "./Context/Context";
+import { Toolbar } from "./pages/Toolbar";
+
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
+  <MyProvider>
     <BrowserRouter>
-      <App />
-      <ToastContainer />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/toolbar" element={<Toolbar/>}/>
+      </Routes>
     </BrowserRouter>
-  </React.StrictMode>
+  </MyProvider>
 );

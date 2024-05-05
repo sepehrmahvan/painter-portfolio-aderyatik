@@ -1,0 +1,35 @@
+@import '../main.scss';
+
+header{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255, 10%);
+    z-index: 50;
+    nav{
+        width: 60%;
+        a{
+            padding: 10px 10px;
+            letter-spacing: 4px;
+            font-size: 1.2vw;
+            text-decoration: none;
+            color: $second-color;
+            transition: 300ms;
+            margin: 0 10px;
+        }
+        a:hover{
+            color: $third-color;
+        }
+    }
+    div.logo{
+        width: 12%;
+        img{
+            width: 100%;
+        }
+    }
+}

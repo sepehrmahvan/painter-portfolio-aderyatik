@@ -1,0 +1,70 @@
+@import '../main.scss';
+
+div.contact{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 25px;
+    box-sizing: border-box;
+    background: url(../images/contact-background.webp);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    div.contact-description{
+        width: 60%;
+        text-align: left;
+        h2{
+            font-size: 2vw;
+            color: $second-color;
+            letter-spacing: 6px;
+        }
+        div.contacts-container{
+            text-align: left;
+            div.contact-info{
+                margin: 10px 0;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                p.contact-icon{
+                    margin: 15px 20px 0 0;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 3vw;
+                    color: $second-color;
+                    border-radius: 50%;
+                    display: inline-block;
+                    position: relative;
+                    top: 5px;
+                }
+                p.contact-text{
+                    font-size: 1.5vw;
+                    color: $second-color;
+                    margin: 15px 0 0 0;
+                    transition: 300ms;
+                    cursor: pointer;
+                }
+                p.contact-text:hover{
+                    color: $third-color;
+                }
+                a.contact-text{
+                    text-decoration: none;
+                    color: $second-color;
+                    font-size: 1.5vw;
+                    margin: 15px 0 0 0;
+                    transition: 300ms;
+                }
+                a.contact-text:hover{
+                    color: $third-color;
+                }
+            }
+        }
+    }
+    div.contact-image{
+        width: 30%;
+        img{
+            width: 100%;
+        }
+    }
+}

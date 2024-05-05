@@ -1,0 +1,13 @@
+@import '../main.scss';
+
+div.copy-right{
+    width: 100%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding: 15px;
+    box-sizing: border-box;
+    letter-spacing: 2px;
+}

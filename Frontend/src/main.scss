@@ -1,0 +1,41 @@
+$main-color: black;
+$second-color: white;
+$third-color: #ffd700;
+
+@font-face {
+    font-family: helvetica;
+    src: url(./fonts/Helvetica.woff);
+}
+
+@font-face {
+    font-family: verdana;
+    src: url(./fonts/Verdana.woff);
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+}
+
+h1{
+    font-family: verdana;
+}
+
+h2{
+    font-family: verdana;
+}
+
+h3{
+    font-family: verdana;
+}
+
+p{
+    font-family: helvetica;
+}
+
+a{
+    font-family: helvetica;
+}
