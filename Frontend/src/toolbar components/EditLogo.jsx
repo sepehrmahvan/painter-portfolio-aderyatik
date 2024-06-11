@@ -6,14 +6,16 @@ import { MdEdit } from "react-icons/md";
 import { IoMdDoneAll } from "react-icons/io";
 import { IoCloseSharp } from "react-icons/io5";
 import { toast } from "react-toastify";
-import image from "../../../Backend/public/uploads/UtankQDZ1css.png"
+import image from "../../../Backend/public/uploads/UtankQDZ1css.png";
+import { MdUpload } from "react-icons/md";
+
 export default function EditLogo() {
-  const { logoData, changeLogo, setImage, handleAddToGallery , Image } =
+  const { logoData, changeLogo, setImage, handleAddToGallery, Image } =
     useContext(MyContext);
   //   edit logo
   const [Modal, setModal] = useState("none");
 
-// console.log(image)
+  // console.log(image)
   const { galleryStore, refreshing } = useContext(MyContext);
 
   const [selectedImage, setSelectedImage] = useState(null);
@@ -32,30 +34,30 @@ export default function EditLogo() {
   //     refreshGalleryStore();
   //   };
   // ! RAMTIN ADDED
-  console.log(selectedImage,"selectedImage")
+  console.log(selectedImage, "selectedImage");
   async function LogoHandler(event) {
     event.preventDefault();
     if (selectedImage !== null) {
       try {
         const logoURL = {
-          logoURL: selectedImage.direction
+          logoURL: selectedImage.direction,
         };
-      
-              const response = await fetch('http://localhost:5000/api/updateuser', {
-                method: 'PUT',
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(logoURL)
-              });
-      
-              const result = await response.json();
-              console.log(result);
-              // setGalleryStore(result);
-            } catch (error) {
-              console.error('Error updating data:', error);
-            }
-          
+
+        const response = await fetch("http://localhost:5000/api/updateuser", {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(logoURL),
+        });
+
+        const result = await response.json();
+        console.log(result);
+        // setGalleryStore(result);
+      } catch (error) {
+        console.error("Error updating data:", error);
+      }
+
       changeLogo(selectedImage);
       setModal("none");
     } else {
@@ -87,6 +89,8 @@ export default function EditLogo() {
     </div>
   ));
 
+  const [uploadModal, setUploadModal] = useState("none");
+
   return (
     <header>
       <nav>
@@ -96,9 +100,14 @@ export default function EditLogo() {
         <a href="#">ABOUT</a>
         <a href="CONTACT">CONTACT</a>
       </nav>
-      <button onClick={() => setModal("flex")} className="edit edit-logo">
-        <MdEdit />
-      </button>
+      <div style={{display: "flex",}} className="edit-logo-buttons">
+        <button style={{margin: "0 20px"}} onClick={() => setModal("flex")} className="edit edit-logo">
+          <MdEdit />
+        </button>
+        <button onClick={() => setUploadModal("flex")} className="edit edit-logo">
+          <MdUpload />
+        </button>
+      </div>
       <div className="logo">
         <img src={logoData} alt="" />
       </div>
@@ -107,8 +116,23 @@ export default function EditLogo() {
         <form onSubmit={LogoHandler}>
           {/* gallery store */}
           <h4>choose an image for your logo</h4>
+          {/* <span onClick={handleRefresh} className="refresh-button">
+              {refreshing ? "Refreshing..." : "Refresh Gallery"}
+            </span> */}
+
+          <div className="gallery-store">{gallerySection}</div>
+          <button className="save" type="submit">
+            save changes
+          </button>
+          <span className="close-modal" onClick={() => setModal("none")}>
+            <IoCloseSharp />
+          </span>
+        </form>
+      </div>
+      <div className="edit-modal" style={{ display: uploadModal }}>
+        <form onSubmit={LogoHandler}>
+          <h4>upload image to your gallery</h4>
           {/* ramtinAdded */}
-          {console.log(Image,"image")}
           <input
             type="file"
             name="image"
@@ -120,12 +144,7 @@ export default function EditLogo() {
           {/* <span onClick={handleRefresh} className="refresh-button">
               {refreshing ? "Refreshing..." : "Refresh Gallery"}
             </span> */}
-
-          <div className="gallery-store">{gallerySection}</div>
-          <button className="save" type="submit">
-            save changes
-          </button>
-          <span className="close-modal" onClick={() => setModal("none")}>
+          <span onClick={() => setUploadModal("none")} className="close-modal">
             <IoCloseSharp />
           </span>
         </form>
