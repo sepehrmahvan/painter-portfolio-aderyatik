@@ -1,4 +1,3 @@
-const Thempalte = require("../models/Thempalte");
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 
@@ -22,11 +21,9 @@ exports.handleLogin = async (req, res, next) => {
 };
 
 exports.updateUser = async (req, res, next) => {
-  const { username, email, logoURL } = req.body;
-  console.log(req.body);
-  const userId = "65b50acf8257bc5b5327263b";
+  const { username, email } = req.body;
   try {
-    const user = await User.findOne({ _id: userId });
+    const user = await User.findOne();
     // Check if the user exists
     if (!user) {
       return res.status(404).json({ message: "User not found" });
@@ -35,39 +32,35 @@ exports.updateUser = async (req, res, next) => {
       user.username = username;
       user.email = email;
       await user.save();
-    } else if (logoURL) {
-      user.logo = logoURL;
-      await user.save();
     }
-    res.status(201).json({ message: "کاربر با موفقیت تغییر کرد شد." });
+    res.status(201).json({ message: "User changes Successfuly" });
   } catch (err) {
     next(err);
   }
 };
 
-exports.getInfo = async (req, res) => {
+exports.getUser = async (req, res) => {
   try {
     const data = await User.find();
     res.status(200).json(data);
   } catch (err) {
     console.log(err);
-    res.status(400).json("مشکلی سمت سرور پیش آمده");
+    res.status(400).json("Server Error");
   }
 };
 
 exports.handleResetPassword = async (req, res, next) => {
-  const userId = "65b50acf8257bc5b5327263b";
 
   const { oldPassword, newPassword, confirmPassword } = req.body;
-  const user = await User.findOne({ _id: userId });
+  const user = await User.findOne();
   const { password } = user;
   const isEqual = await bcrypt.compare(oldPassword, password);
 
   try {
     if (!isEqual) {
-      return res.status(400).send("کلمه عبور قبلی  اشتباه");
+      return res.status(400).send("Passwords Dont Match");
     } else if (newPassword !== confirmPassword) {
-      return res.status(400).send("کلمه عبور با هم مشابه نیست");
+      return res.status(400).send("In Correct Confirmed Password");
     }
     if (!user) {
       return res.status(404).json({ message: "User not found" });
@@ -76,40 +69,9 @@ exports.handleResetPassword = async (req, res, next) => {
     user.password = newPassword;
     await user.save();
 
-    res.status(200).json({ message: "عملیات با موفقیت انجام شد" });
+    res.status(200).json({ message: "Password Updated" });
   } catch (err) {
     next(err);
   }
 };
 
-exports.handleAbout = async (req, res) => {
-  const { about, newinstagram, newlinkdine, newpintrest, newyoutube } =
-    req.body;
-  try {
-    // Use await to get the user object
-    const user = await User.findOne();
-console.log(req.body)
-    // Check if the user exists
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    // Update the about field
-    if (about) {
-      user.about = about;
-      await user.save();
-    } else {
-      user.instagram = newinstagram;
-      user.linkdine = newlinkdine;
-      user.pintrest = newpintrest;
-      user.youtube = newyoutube;
-      // Save the changes
-    }
-    await user.save();
-
-    res.status(201).json({ message: "تغییرات کاربر با موفقیت انجام شد." });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: "Internal Server Error" });
-  }
-};

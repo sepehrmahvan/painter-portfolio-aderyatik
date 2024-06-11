@@ -6,7 +6,6 @@ import { MdEdit } from "react-icons/md";
 import { IoMdDoneAll } from "react-icons/io";
 import { IoCloseSharp } from "react-icons/io5";
 import { toast } from "react-toastify";
-import image from "../../../Backend/public/uploads/UtankQDZ1css.png"
 export default function EditLogo() {
   const { logoData, changeLogo, setImage, handleAddToGallery , Image } =
     useContext(MyContext);

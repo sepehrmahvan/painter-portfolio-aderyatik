@@ -9,9 +9,13 @@ const ThemplateSchema = new mongoose.Schema({
   },
   nameTitle: {
     type: String,
-     unique: true,
+    trim: true,
   },
   sloganTitle: {
+    type: String,
+    trim: true,
+  },
+  cv: {
     type: String,
   },
   headerImage: {

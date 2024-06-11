@@ -104,7 +104,7 @@ const MyProvider = ({ children }) => {
     slogan: "My name is Fatemeh Hosseini",
     cv: "#",
   });
-  console.log(posterData,"posterData")
+
   // about
   const [aboutData, setAboutdata] = useState({
     aboutText:
