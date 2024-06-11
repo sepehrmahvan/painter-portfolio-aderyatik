@@ -1,3 +1,4 @@
+const Thempalte = require("../models/Thempalte");
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 
@@ -21,7 +22,8 @@ exports.handleLogin = async (req, res, next) => {
 };
 
 exports.updateUser = async (req, res, next) => {
-  const { username, email } = req.body;
+  const { username, email, logoURL } = req.body;
+  console.log(req.body);
   const userId = "65b50acf8257bc5b5327263b";
   try {
     const user = await User.findOne({ _id: userId });
@@ -29,25 +31,29 @@ exports.updateUser = async (req, res, next) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
-
-    user.username = username;
-    user.email = email;
-    await user.save();
-    res.status(201).json({ message: "تغغیرات با موفقیت انجام شد." });
+    if (username) {
+      user.username = username;
+      user.email = email;
+      await user.save();
+    } else if (logoURL) {
+      user.logo = logoURL;
+      await user.save();
+    }
+    res.status(201).json({ message: "کاربر با موفقیت تغییر کرد شد." });
   } catch (err) {
     next(err);
   }
 };
 
-exports.getInfo = async(req,res)=>{
+exports.getInfo = async (req, res) => {
   try {
     const data = await User.find();
     res.status(200).json(data);
   } catch (err) {
-    console.log(err)
+    console.log(err);
     res.status(400).json("مشکلی سمت سرور پیش آمده");
   }
-}
+};
 
 exports.handleResetPassword = async (req, res, next) => {
   const userId = "65b50acf8257bc5b5327263b";
@@ -77,28 +83,31 @@ exports.handleResetPassword = async (req, res, next) => {
 };
 
 exports.handleAbout = async (req, res) => {
-  const { newAbout, newinstagram, newlinkdine, newpintrest, newyoutube } =
+  const { about, newinstagram, newlinkdine, newpintrest, newyoutube } =
     req.body;
-  const userId = "65b50acf8257bc5b5327263b";
   try {
     // Use await to get the user object
-    const user = await User.findOne({ _id: userId });
-
+    const user = await User.findOne();
+console.log(req.body)
     // Check if the user exists
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
     // Update the about field
-    user.about = newAbout;
-    user.instagram = newinstagram;
-    user.linkdine = newlinkdine;
-    user.pintrest = newpintrest;
-    user.youtube = newyoutube;
-    // Save the changes
+    if (about) {
+      user.about = about;
+      await user.save();
+    } else {
+      user.instagram = newinstagram;
+      user.linkdine = newlinkdine;
+      user.pintrest = newpintrest;
+      user.youtube = newyoutube;
+      // Save the changes
+    }
     await user.save();
 
-    res.status(201).json({ message: "تغییرات با موفقیت انجام شد." });
+    res.status(201).json({ message: "تغییرات کاربر با موفقیت انجام شد." });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: "Internal Server Error" });

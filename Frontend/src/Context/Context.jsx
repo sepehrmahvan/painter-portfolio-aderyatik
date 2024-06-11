@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import logoImage from "../images/logo.png";
 import posterImage from "../images/poster.webp";
 import work1 from "../images/work1.webp";
@@ -11,13 +11,91 @@ const { Provider } = MyContext;
 
 const MyProvider = ({ children }) => {
   // gallery store
+  // !ramtin Added
   const [galleryStore, setGalleryStore] = useState([
     "https://thema-yoga.s3.amazonaws.com/src/images/logo.png",
     "https://thema-yoga.s3.amazonaws.com/src/images/poster.webp",
   ]);
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch("http://localhost:5000/api/get-image");
+        const result = await response.json();
+        console.log(result);
+        setGalleryStore(result);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    fetchData(); // Call the async function immediately
+  }, []);
+  // !ramtin Added set logo data
+  // useEffect(() => {
+  //   async function update() {
+  //     try {
+  //       const dataToUpdate = { /* your data here */ };
+
+  //       const response = await fetch('http://localhost:5000/api/updateuser', {
+  //         method: 'PUT',
+  //         headers: {
+  //           'Content-Type': 'application/json'
+  //         },
+  //         body: JSON.stringify(dataToUpdate)
+  //       });
+
+  //       const result = await response.json();
+  //       console.log(result);
+  //       // setGalleryStore(result);
+  //     } catch (error) {
+  //       console.error('Error updating data:', error);
+  //     }
+  //   }
+
+  //   update(); // Call the async function immediately
+  // }, []);
   const [refreshing, setRefreshing] = useState(false);
   // logo
   const [logoData, setLogoData] = useState(logoImage);
+  console.log(logoData, "logoData");
+  // !ramtin Added set logo data
+  // !IMPORTANT مقدار داره به صورت ارایه میاد
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch("http://localhost:5000/api/get-data");
+        const result = await response.json();
+        console.log(result[0].logo, "getdata");
+        setLogoData(`${result[0].logo}`);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    fetchData(); // Call the async function immediately
+  }, []);
+  // !ramtin Added set logo data
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch("http://localhost:5000/api/get-header");
+        const result = await response.json();
+        console.log(result, "getdata");
+        // setPosterData({
+        //   ...posterData,
+        //   posterImage: result.headerImage,
+
+        //   job: result.jobTitle,
+        //   name: result.nameTitle,
+        //   slogan: result.sloganTitle,
+        // });
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    fetchData(); // Call the async function immediately
+  }, []);
   // poster
   const [posterData, setPosterData] = useState({
     posterImage: posterImage,
@@ -26,6 +104,7 @@ const MyProvider = ({ children }) => {
     slogan: "My name is Fatemeh Hosseini",
     cv: "#",
   });
+  console.log(posterData,"posterData")
   // about
   const [aboutData, setAboutdata] = useState({
     aboutText:
@@ -86,12 +165,12 @@ const MyProvider = ({ children }) => {
   //   contact
   const [contactData, setContactData] = useState({
     image: contactsImage,
-    email: 'example@example.com',
-    pinterest: 'pinterest.com/aderyatic',
-    linkedin: 'linkedin.com/aderyatic',
-    youtube: 'youtube.com/aderyatic',
-    instagram: 'instagram.com/aderyatic'
-  })
+    email: "example@example.com",
+    pinterest: "pinterest.com/aderyatic",
+    linkedin: "linkedin.com/aderyatic",
+    youtube: "youtube.com/aderyatic",
+    instagram: "instagram.com/aderyatic",
+  });
 
   // functions -----------------------------------------------------------------------------------------
 
@@ -101,54 +180,78 @@ const MyProvider = ({ children }) => {
   };
 
   // poster
-  const changePoster = (
-    job,
-    name,
-    slogan,
-    selectedImage,
-  ) => {
-    setPosterData(
-      {
-        job: job,
-        name: name,
-        slogan: slogan,
-        posterImage: selectedImage,
-      });
+  const changePoster = (job, name, slogan, selectedImage) => {
+    setPosterData({
+      job: job,
+      name: name,
+      slogan: slogan,
+      posterImage: selectedImage,
+    });
   };
 
   // about me
   const changeAbout = (aboutText, aboutEmail) => {
     setAboutdata({
       aboutText: aboutText,
-      aboutEmail: aboutEmail
-    })
-  }
+      aboutEmail: aboutEmail,
+    });
+  };
 
   // works
-  const changeWorksData = (
-    workCards,
-  ) => {
+  const changeWorksData = (workCards) => {
     setWorksData(workCards);
   };
 
   // videos
   const changeVideosData = (videoCards) => {
-    setVideoArtsData(videoCards)
-  }
+    setVideoArtsData(videoCards);
+  };
 
   // contacts
-  const changeContacts = (selectedImage, email, pinterest, linkedIn, youtube, instagram) => {
+  const changeContacts = (
+    selectedImage,
+    email,
+    pinterest,
+    linkedIn,
+    youtube,
+    instagram
+  ) => {
     setContactData({
       image: selectedImage,
       email: email,
       pinterest: pinterest,
       linkedin: linkedIn,
       youtube: youtube,
-      instagram: instagram
-    })
-  }
+      instagram: instagram,
+    });
+  };
 
+  // ?RamtinAdded
+  const [Image, setImage] = useState(null);
+  const handleAddToGallery = async () => {
+    try {
+      if (!Image) {
+        console.log("No image selected.");
+        return;
+      }
 
+      const formData = new FormData();
+      formData.append("image", Image);
+
+      const response = await fetch("http://localhost:5000/api/upload-image", {
+        method: "POST",
+        body: formData,
+      });
+      if (response.ok) {
+        console.log("Image uploaded successfully!");
+        // Optionally, you can do something after successful upload
+      } else {
+        console.error("Failed to upload image.");
+      }
+    } catch (err) {
+      console.error("Error uploading image:", err);
+    }
+  };
   // context value --------------------------------------------------
   const contextValue = {
     // gallery
@@ -177,7 +280,11 @@ const MyProvider = ({ children }) => {
     // contact
     contactData,
     changeContacts,
-    setContactData
+    setContactData,
+    // ramtin added
+    setImage,
+    Image,
+    handleAddToGallery,
   };
   return <Provider value={contextValue}>{children}</Provider>;
 };

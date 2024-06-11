@@ -21,6 +21,9 @@ const userSchema = new mongoose.Schema({
     maxlength: [225, "رباره من نباید بیشتر از 225 کاراکتر باشد"],
     minlength: [3, "رباره من نباید کمتر از 3 کاراکتر باشد"],
   },
+  logo: {
+    type: String,
+  },
   instagram: {
     type: String,
   },

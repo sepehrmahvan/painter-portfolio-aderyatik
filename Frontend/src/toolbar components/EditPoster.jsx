@@ -4,6 +4,7 @@ import { MdEdit } from "react-icons/md";
 import { IoMdDoneAll } from "react-icons/io";
 import { IoCloseSharp } from "react-icons/io5";
 import "./EditPoster.scss";
+import { toast } from "react-toastify";
 
 export default function EditPoster() {
   const { posterData } = useContext(MyContext);
@@ -14,8 +15,7 @@ export default function EditPoster() {
 
   const [Modal, setModal] = useState("none");
 
-  const { galleryStore, refreshing, changePoster } =
-    useContext(MyContext);
+  const { galleryStore, refreshing, changePoster } = useContext(MyContext);
 
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -29,9 +29,9 @@ export default function EditPoster() {
     }
   };
 
-//   const handleRefresh = () => {
-//     refreshGalleryStore();
-//   };
+  //   const handleRefresh = () => {
+  //     refreshGalleryStore();
+  //   };
 
   const gallerySection = galleryStore.map((imageUrl, index) => (
     <div
@@ -44,7 +44,7 @@ export default function EditPoster() {
         style={{
           border: selectedImage === imageUrl ? "2px solid blue" : "none",
         }}
-        src={imageUrl}
+        src={`http://localhost:5000/${imageUrl?.direction}`}
         alt="image"
       />
       {selectedImage === imageUrl && (
@@ -55,17 +55,47 @@ export default function EditPoster() {
     </div>
   ));
 
-  function posterHandler(event) {
+  async function posterHandler(event) {
     event.preventDefault();
-    changePoster(
-      job,
-      name,
-      slogan,
-      selectedImage === null ? poster : selectedImage,
-    );
-    setModal("none");
-  }
+// ! ramtin added
+    if (selectedImage !== null) {
+      try {
+        const Poster = {
+          sloganTitle: slogan,
+          headerImage: selectedImage.direction,
+          nameTitle: name,
+          jobTitle: job,
+        };
+        const response = await fetch(
+          "http://localhost:5000/api/update-header",
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(Poster),
+          }
+        );
 
+        const result = await response.json();
+        console.log(result.message);
+        toast.success(result.message);
+        // setGalleryStore(result);
+      } catch (error) {
+        console.error("Error updating data:", error);
+      }
+
+      changePoster(
+        job,
+        name,
+        slogan,
+        selectedImage === null ? poster : selectedImage
+      );
+      setModal("none");
+    } else {
+      toast.error("you need to choose one picture");
+    }
+  }
 
   return (
     <div

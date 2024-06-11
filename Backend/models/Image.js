@@ -1,11 +1,14 @@
 const mongoose = require("mongoose");
+const { string } = require("yup");
 
 
 const ImageSchema = new mongoose.Schema({
-  logoname: {
+  imagename: {
     type: String,
   },
-
+direction:{
+  type:String,
+},
   createdAt: {
     type: Date,
     default: Date.now,

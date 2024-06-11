@@ -5,22 +5,15 @@ import { MyContext } from "../Context/Context";
 import { MdEdit } from "react-icons/md";
 import { IoMdDoneAll } from "react-icons/io";
 import { IoCloseSharp } from "react-icons/io5";
-
+import { toast } from "react-toastify";
+import image from "../../../Backend/public/uploads/UtankQDZ1css.png"
 export default function EditLogo() {
-  const { logoData, changeLogo } = useContext(MyContext);
+  const { logoData, changeLogo, setImage, handleAddToGallery , Image } =
+    useContext(MyContext);
   //   edit logo
   const [Modal, setModal] = useState("none");
 
-  function LogoHandler(event) {
-    event.preventDefault();
-    if (selectedImage !== null) {
-      changeLogo(selectedImage);
-      setModal("none");
-    } else {
-      toast.error("you need to choose one picture");
-    }
-  }
-
+// console.log(image)
   const { galleryStore, refreshing } = useContext(MyContext);
 
   const [selectedImage, setSelectedImage] = useState(null);
@@ -38,7 +31,37 @@ export default function EditLogo() {
   //   const handleRefresh = () => {
   //     refreshGalleryStore();
   //   };
-
+  // ! RAMTIN ADDED
+  console.log(selectedImage,"selectedImage")
+  async function LogoHandler(event) {
+    event.preventDefault();
+    if (selectedImage !== null) {
+      try {
+        const logoURL = {
+          logoURL: selectedImage.direction
+        };
+      
+              const response = await fetch('http://localhost:5000/api/updateuser', {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(logoURL)
+              });
+      
+              const result = await response.json();
+              console.log(result);
+              // setGalleryStore(result);
+            } catch (error) {
+              console.error('Error updating data:', error);
+            }
+          
+      changeLogo(selectedImage);
+      setModal("none");
+    } else {
+      toast.error("you need to choose one picture");
+    }
+  }
   const gallerySection = galleryStore.map((imageUrl, index) => (
     <div
       className="gallery-store-container"
@@ -50,9 +73,12 @@ export default function EditLogo() {
         style={{
           border: selectedImage === imageUrl ? "2px solid blue" : "none",
         }}
-        src={imageUrl}
+        //? ramtin Added
+        // ../../../Backend/uploads/
+        src={`http://localhost:5000/${imageUrl?.direction}`}
         alt="image"
       />
+      {/* {console.log(`http://localhost:5000/${imageUrl?.direction}`,"imageUrl.direction")} */}
       {selectedImage === imageUrl && (
         <div className="clicked-image">
           <IoMdDoneAll />
@@ -81,9 +107,20 @@ export default function EditLogo() {
         <form onSubmit={LogoHandler}>
           {/* gallery store */}
           <h4>choose an image for your logo</h4>
+          {/* ramtinAdded */}
+          {console.log(Image,"image")}
+          <input
+            type="file"
+            name="image"
+            title="image"
+            onChange={(e) => setImage(e.target.files[0])}
+            style={{ backgroundColor: "red" }}
+          />
+          <button onClick={() => handleAddToGallery()}>Add To Gallery</button>
           {/* <span onClick={handleRefresh} className="refresh-button">
               {refreshing ? "Refreshing..." : "Refresh Gallery"}
             </span> */}
+
           <div className="gallery-store">{gallerySection}</div>
           <button className="save" type="submit">
             save changes

@@ -22,6 +22,8 @@ app.use(express.json());
 
  app.use("/api", require("./routes/userRoutes"));
  app.use("/api", require("./routes/uploadRoutes"));
+ app.use("/api", require("./routes/themplateRoutes"));
+
 // app.use("/api", require("./routes/borrowBookRoutes"));
 
 const port = process.env.PORT || 5000;
