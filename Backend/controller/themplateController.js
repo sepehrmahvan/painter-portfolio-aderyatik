@@ -83,15 +83,29 @@ exports.handleGetAbout = async (req, res, next) => {
 };
 // * Work samples
 // ? UPDATE Work samples
-exports.handleUpdateSample = async (req, res, next) => {
-  const { imageUrl, youtubeUrl } = req.body;
+// exports.handleUpdateSample = async (req, res, next) => {
+//   const {workSampleURL ,workSampleTitle,workSampleCategory ,workSampleAbout, workSampleStatement} = req.body;
+//   try {
+//     const workSample = await Sample.findOne();
+//     workSample.workSampleURL = workSampleURL;
+//     workSample.workSampleTitle = workSampleTitle;
+//     workSample.workSampleCategory = workSampleCategory;
+//     workSample.workSampleAbout = workSampleAbout;
+//     workSample.workSampleStatement = workSampleStatement;
+
+//     await workSample.save();
+
+//     res.status(201).json({ message: " workSample Changes Successfully" });
+//   } catch (err) {
+//     next(err);
+//   }
+// };
+// ? ADD Work samples
+exports.handleAddSample = async (req, res, next) => {
   try {
-    const workSample = await Sample.findOne();
-    workSample.workSampleURL = imageUrl;
+    await Sample.create(req.body);
 
-    await workSample.save();
-
-    res.status(201).json({ message: " workSample Changes Successfully" });
+    res.status(201).json({ message: " workSample added Successfully" });
   } catch (err) {
     next(err);
   }
@@ -105,25 +119,48 @@ exports.handleGetSample = async (req, res, next) => {
     next(err);
   }
 };
-
-// * YOUTUBE
-// ? UPDATE YOUTUBE
-exports.handleUpdateyoutube = async (req, res, next) => {
-  const { YoutubeURL, title, statement, id } = req.body;
-  console.log(req.body);
+// ? delete Work samples
+exports.handleDeleteSample = async (req, res, next) => {
+  const { id } = req.body;
   try {
-    const youtube = await Youtube.findOne({ _id: id });
-    youtube.YoutubeURL = YoutubeURL;
-    youtube.title = title;
-    youtube.statement = statement;
+    const workSample = await Sample.findOne({ _id: id });
+    if (!workSample) {
+      return res.status(404).json({ message: "work sample not found" });
+    }
+    await Sample.findOneAndDelete({ _id: id });
 
-    await youtube.save();
-
-    res.status(201).json({ message: " youtube Changes Successfully" });
+    res.status(201).json({ message: " workSample deleted Successfully" });
   } catch (err) {
     next(err);
   }
 };
+// ? GET Work samples
+exports.handleGetSample = async (req, res, next) => {
+  try {
+    const workSample = await Sample.findOne();
+    res.status(200).json(workSample);
+  } catch (err) {
+    next(err);
+  }
+};
+// * YOUTUBE
+// ? UPDATE YOUTUBE
+// exports.handleUpdateyoutube = async (req, res, next) => {
+//   const { YoutubeURL, title, statement, id } = req.body;
+//   console.log(req.body);
+//   try {
+//     const youtube = await Youtube.findOne({ _id: id });
+//     youtube.YoutubeURL = YoutubeURL;
+//     youtube.title = title;
+//     youtube.statement = statement;
+
+//     await youtube.save();
+
+//     res.status(201).json({ message: " youtube Changes Successfully" });
+//   } catch (err) {
+//     next(err);
+//   }
+// };
 // ? ADD YOUTUBE
 exports.handleAddyoutube = async (req, res, next) => {
   try {
@@ -139,6 +176,21 @@ exports.handleGetyoutube = async (req, res, next) => {
   try {
     const youtube = await Youtube.find();
     res.status(200).json(youtube);
+  } catch (err) {
+    next(err);
+  }
+};
+// ? delete YOUTUBE
+exports.handleDeleteyoutube = async (req, res, next) => {
+  const { id } = req.body;
+  try {
+    const youtube = await Youtube.findOne({ _id: id });
+if (!youtube) {
+      return res.status(404).json({ message: "work sample not found" });
+    }
+    await Youtube.findOneAndDelete({ _id: id });
+
+    res.status(201).json({ message: " YOUTUBE deleted Successfully" });
   } catch (err) {
     next(err);
   }

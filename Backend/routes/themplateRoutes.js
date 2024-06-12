@@ -14,12 +14,17 @@ router.get("/get-header", themplateController.handleGetHeader);
 router.put("/update-about", themplateController.handleUpdateAbout);
 router.get("/get-about", themplateController.handleGetAbout);
 //* WORK
-router.put("/update-work", themplateController.handleUpdateSample);
+// router.put("/update-work", themplateController.handleUpdateSample);
+router.post("/add-work", themplateController.handleAddSample);
 router.get("/get-work", themplateController.handleGetSample);
+router.delete("/delete-work", themplateController.handleDeleteSample);
+
 //* YOUTUBE
-router.put("/update-youtube", themplateController.handleUpdateyoutube);
+// router.put("/update-youtube", themplateController.handleUpdateyoutube);
 router.get("/get-youtube", themplateController.handleGetyoutube);
 router.post("/add-youtube", themplateController.handleAddyoutube);
+router.delete("/delete-youtube", themplateController.handleDeleteyoutube);
+
 //* SOCIALMEDIA
 router.put("/update-Socialmedia", themplateController.handleUpdateSocialmedia);
 router.get("/get-Socialmedia", themplateController.handleGetSocialmedia);
