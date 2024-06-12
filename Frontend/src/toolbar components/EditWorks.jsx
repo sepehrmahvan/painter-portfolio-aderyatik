@@ -9,6 +9,7 @@ import { MyContext } from "../Context/Context";
 import { MdEdit } from "react-icons/md";
 import { IoMdDoneAll } from "react-icons/io";
 import { IoCloseSharp } from "react-icons/io5";
+import { toast } from "react-toastify";
 
 export default function EditWorks() {
   const rightArrow = <IoIosArrowForward />;
@@ -65,14 +66,15 @@ export default function EditWorks() {
       style={{ position: "relative", display: "inline-block" }}
     >
       <img
-        onClick={() => handleImageClick(imageUrl)}
+        onClick={() => handleImageClick(imageUrl.direction)}
         style={{
-          border: selectedImage === imageUrl ? "2px solid blue" : "none",
+          border:
+            selectedImage === imageUrl.direction ? "2px solid blue" : "none",
         }}
-        src={imageUrl}
+        src={`http://localhost:5000/${imageUrl.direction}`}
         alt="image"
       />
-      {selectedImage === imageUrl && (
+      {selectedImage === imageUrl.direction && (
         <div className="clicked-image">
           <IoMdDoneAll />
         </div>
@@ -80,33 +82,33 @@ export default function EditWorks() {
     </div>
   ));
 
-  const handleCards = () => {
-    if (name !== "" && selectedImage?.trim() !== "" && statement !== "" && category !== "" && about !== "" ) {
-      setWorkCards([
-        ...workCards,
-        {
-          id: workCards.length + 1,
-          image: selectedImage,
-          name: name,
-          statement: statement,
-          category: category,
-          about: about
-        },
-      ]);
-      setName("");
-      setSelectedImage("");
-      setStatement("");
-      setCategory("");
-      setAbout("");
-    } else {
-      alert("You need to choose an image and fill inputs");
-    }
-  };
+  // const handleCards = () => {
+  //   if (name !== "" && selectedImage?.trim() !== "" && statement !== "" && category !== "" && about !== "" ) {
+  //     setWorkCards([
+  //       ...workCards,
+  //       {
+  //         id: workCards.length + 1,
+  //         image: selectedImage,
+  //         name: name,
+  //         statement: statement,
+  //         category: category,
+  //         about: about
+  //       },
+  //     ]);
+  //     setName("");
+  //     setSelectedImage("");
+  //     setStatement("");
+  //     setCategory("");
+  //     setAbout("");
+  //   } else {
+  //     alert("You need to choose an image and fill inputs");
+  //   }
+  // };
 
-  const handleDeleteCard = (id) => {
-    const updatedCards = workCards.filter((card) => card.id !== id);
-    setWorkCards(updatedCards);
-  };
+  // const handleDeleteCard = (id) => {
+  //   const updatedCards = workCards.filter((card) => card.id !== id);
+  //   setWorkCards(updatedCards);
+  // };
 
   const cardLi = workCards.map((item) => (
     <ul key={item.id}>
@@ -117,17 +119,59 @@ export default function EditWorks() {
     </ul>
   ));
 
-  const { changeWorksData } = useContext(MyContext);
+  // const { changeWorksData } = useContext(MyContext);
 
-  const worksHandler = (event) => {
-    event.preventDefault();
-    if(workCards){
-        changeWorksData(
-          workCards,
-        );
-        setModal("none");
-    } else{
-        alert("you dont have any work to post")
+  // const worksHandler = (event) => {
+  //   event.preventDefault();
+  //   if(workCards){
+  //       changeWorksData(
+  //         workCards,
+  //       );
+  //       setModal("none");
+  //   } else{
+  //       alert("you dont have any work to post")
+  //   }
+  // };
+
+  const worksHandler = async (e) => {
+    e.preventDefault();
+    // ! ramtin added
+    const workSampleURL = selectedImage;
+    const workSampleTitle = name;
+    const workSampleCategory = category;
+    const workSampleAbout = about;
+    const workSampleStatement = statement;
+    if (
+      selectedImage !== "" &&
+      name !== "" &&
+      category !== "" &&
+      about !== "" &&
+      statement !== ""
+    ) {
+      try {
+        const response = await fetch("http://localhost:5000/api/add-work", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            workSampleURL,
+            workSampleTitle,
+            workSampleCategory,
+            workSampleAbout,
+            workSampleStatement,
+          }),
+        });
+
+        const result = await response.json();
+        console.log(response);
+        console.log(result.message);
+        toast.success(result.message);
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      toast.error("you need to fill the empty inputs");
     }
   };
 
@@ -157,7 +201,7 @@ export default function EditWorks() {
         </button>
         {/* edit works */}
         <div className="edit-modal" style={{ display: Modal }}>
-          <form onSubmit={worksHandler}>
+          <form>
             {/* title */}
             <h4>write title of this section</h4>
             <input
@@ -193,12 +237,12 @@ export default function EditWorks() {
               placeholder="about this work"
               className="content"
             />
-            <span onClick={handleCards} className="add-card-btn">
+            <span onClick={worksHandler} className="add-card-btn">
               add work
             </span>
             {cardLi}
-            <button className="save" type="submit">
-              save changes
+            <button onClick={() => setModal("none")} className="save">
+              close
             </button>
             <span className="close-modal" onClick={() => setModal("none")}>
               <IoCloseSharp />

@@ -7,7 +7,7 @@ import { IoCloseSharp } from "react-icons/io5";
 import { toast } from "react-toastify";
 
 export default function EditAbout() {
-  const { aboutData, changeAbout } = useContext(MyContext);
+  const { aboutData } = useContext(MyContext);
   const [Modal, setModal] = useState("none");
 
   const [aboutText, setAboutText] = useState("");
@@ -16,12 +16,14 @@ export default function EditAbout() {
   const aboutHandler = async (e) => {
     e.preventDefault();
     // ! ramtin added
-    if (aboutData !== null) {
+    const title = aboutText;
+    const email = aboutEmail;
+    if (aboutText !== "" && aboutEmail !== "") {
       try {
         const About = {
           about: aboutData.aboutText,
         };
-        const response = await fetch("http://localhost:5000/api/handle-about", {
+        const response = await fetch("http://localhost:5000/api/update-about", {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -32,12 +34,13 @@ export default function EditAbout() {
         const result = await response.json();
         console.log(result.message);
         toast.success(result.message);
-        changeAbout(aboutText, aboutEmail);
         setModal("none");
         // setGalleryStore(result);
       } catch (error) {
-        console.error("Error updating data:", error);
+        console.log(error);
       }
+    } else {
+      toast.error("you need to fill the empty inputs");
     }
   };
 
