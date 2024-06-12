@@ -10,6 +10,9 @@ const YoutubeSchema = new mongoose.Schema({
   statement: {
     type: String,
   },
+  category: {
+    type: String,
+  },
   createdAt: {
     type: Date,
     default: Date.now,

@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import "../pages/Toolbar.scss";
 import { Link } from "react-router-dom";
 import { MyContext } from "../Context/Context";
-import { MdEdit } from "react-icons/md";
+import { MdEdit, MdUpload } from "react-icons/md";
 import { IoMdDoneAll } from "react-icons/io";
 import { IoCloseSharp } from "react-icons/io5";
 import { toast } from "react-toastify";
