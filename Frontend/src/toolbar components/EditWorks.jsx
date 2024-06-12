@@ -82,34 +82,6 @@ export default function EditWorks() {
     </div>
   ));
 
-  // const handleCards = () => {
-  //   if (name !== "" && selectedImage?.trim() !== "" && statement !== "" && category !== "" && about !== "" ) {
-  //     setWorkCards([
-  //       ...workCards,
-  //       {
-  //         id: workCards.length + 1,
-  //         image: selectedImage,
-  //         name: name,
-  //         statement: statement,
-  //         category: category,
-  //         about: about
-  //       },
-  //     ]);
-  //     setName("");
-  //     setSelectedImage("");
-  //     setStatement("");
-  //     setCategory("");
-  //     setAbout("");
-  //   } else {
-  //     alert("You need to choose an image and fill inputs");
-  //   }
-  // };
-
-  // const handleDeleteCard = (id) => {
-  //   const updatedCards = workCards.filter((card) => card.id !== id);
-  //   setWorkCards(updatedCards);
-  // };
-
   const cardLi = workCards.map((item) => (
     <ul key={item.id}>
       <li>{item.name}</li>
@@ -118,20 +90,6 @@ export default function EditWorks() {
       </span>
     </ul>
   ));
-
-  // const { changeWorksData } = useContext(MyContext);
-
-  // const worksHandler = (event) => {
-  //   event.preventDefault();
-  //   if(workCards){
-  //       changeWorksData(
-  //         workCards,
-  //       );
-  //       setModal("none");
-  //   } else{
-  //       alert("you dont have any work to post")
-  //   }
-  // };
 
   const worksHandler = async (e) => {
     e.preventDefault();

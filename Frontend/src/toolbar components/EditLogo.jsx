@@ -6,11 +6,10 @@ import { MdEdit, MdUpload } from "react-icons/md";
 import { IoMdDoneAll } from "react-icons/io";
 import { IoCloseSharp } from "react-icons/io5";
 import { toast } from "react-toastify";
-import { MdUpload } from "react-icons/md";
 
 
 export default function EditLogo() {
-  const { logoData, setImage, handleAddToGallery, Image } =
+  const { logoData, handleAddToGallery } =
     useContext(MyContext);
   //   edit logo
   const [Modal, setModal] = useState("none");
@@ -35,7 +34,6 @@ export default function EditLogo() {
   //   };
 
   // ! RAMTIN ADDED
-  console.log(selectedImage, "selectedImage");
   async function LogoHandler(event) {
     event.preventDefault();
     if (selectedImage !== null) {
@@ -105,7 +103,7 @@ export default function EditLogo() {
         </button>
       </div>
       <div className="logo">
-        <img src={logoData} alt="" />
+        <img src={`http://localhost:5000/${logoData}`} alt="logo" />
       </div>
       {/* edit logo */}
       <div className="edit-modal" style={{ display: Modal }}>

@@ -66,18 +66,6 @@ export default function EditContacts() {
     </div>
   ));
 
-  const { changeContacts } = useContext(MyContext)
-
-  // const contactsHandler = (e) => {
-  //   e.preventDefault();
-  //   if(email !== "" && selectedImage !== ""){
-  //       changeContacts(selectedImage, email, pinterest, linkedIn, youtube, instagram)
-  //       setModal('none');
-  //   } else{
-  //       alert('you need to fill at least email input and choose an image')
-  //   }
-  // }
-
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(contactData.email);
     alert("Email copied to clipboard!");
@@ -120,13 +108,13 @@ export default function EditContacts() {
             <p className="contact-icon">
               <MdOutlineMailOutline />
             </p>
-            <p onClick={handleCopyEmail} className="contact-text">{contactData.email}</p>
+            <p onClick={handleCopyEmail} className="contact-text">{contactData.SocialMediaEmail}</p>
           </div>
           <div className="contact-info">
             <p className="contact-icon">
               <FaPinterestP />
             </p>
-            <a href={contactData.pinterest} className="contact-text">
+            <a href={contactData.SocialMediaPintrest} className="contact-text">
               Pinterest
             </a>
           </div>
@@ -134,7 +122,7 @@ export default function EditContacts() {
             <p className="contact-icon">
               <TiSocialLinkedin />
             </p>
-            <a href={contactData.linkedin} className="contact-text">
+            <a href={contactData.SocialMediaLinkdin} className="contact-text">
               LinkedIn
             </a>
           </div>
@@ -142,7 +130,7 @@ export default function EditContacts() {
             <p className="contact-icon">
               <FaYoutube />
             </p>
-            <a href={contactData.youtube} className="contact-text">
+            <a href={contactData.SocialMediaYoutube} className="contact-text">
               Youtube
             </a>
           </div>
@@ -150,14 +138,14 @@ export default function EditContacts() {
             <p className="contact-icon">
               <FaInstagram />
             </p>
-            <a href={contactData.instagram} className="contact-text">
+            <a href={contactData.SocialMediaInstagram} className="contact-text">
               Instagram
             </a>
           </div>
         </div>
       </div>
       <div className="contact-image">
-        <img src={contactData.image} alt="" />
+        <img src={`http://localhost:5000/${contactData.SocialMediaURL}`} alt="" />
       </div>
       <button onClick={() => setModal("flex")} className="edit edit-contacts">
         <MdEdit />

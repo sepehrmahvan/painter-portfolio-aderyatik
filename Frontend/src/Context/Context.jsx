@@ -53,39 +53,16 @@ const MyProvider = ({ children }) => {
   // }, []);
   const [refreshing, setRefreshing] = useState(false);
   // logo
-  const [logoData, setLogoData] = useState();
-  console.log(logoData, "logoData");
-  // !ramtin Added set logo data
-  // !IMPORTANT مقدار داره به صورت ارایه میاد
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch("http://localhost:5000/api/get-data");
-        const result = await response.json();
-        console.log(result[0].logo, "getdata");
-        setLogoData(`${result[0].logo}`);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    }
-
-    fetchData(); // Call the async function immediately
-  }, []);
-  // !ramtin Added set logo data
+    fetch("http://localhost:5000/api/get-logo").then(res => res.json()).then(res => setLogoData(res.FoundLogo.logoURL));
+  }, [])
+  const [logoData, setLogoData] = useState();
   useEffect(() => {
     async function fetchData() {
       try {
         const response = await fetch("http://localhost:5000/api/get-header");
         const result = await response.json();
-        console.log(result, "getdata");
-        // setPosterData({
-        //   ...posterData,
-        //   posterImage: result.headerImage,
-
-        //   job: result.jobTitle,
-        //   name: result.nameTitle,
-        //   slogan: result.sloganTitle,
-        // });
+        setPosterData(result)
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -95,46 +72,62 @@ const MyProvider = ({ children }) => {
   }, []);
   // poster
   const [posterData, setPosterData] = useState({
-    posterImage: posterImage,
-    job: "",
-    name: "",
-    slogan: "",
+    headerImage: posterImage,
+    jobTitle: "",
+    nameTitle: "",
+    sloganTitle: "",
     cv: "",
   });
-
   // about
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch("http://localhost:5000/api/get-about");
+        const result = await response.json();
+        console.log(result, "get about");
+        setAboutdata(result)
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    fetchData(); // Call the async function immediately
+  }, []);
   const [aboutData, setAboutdata] = useState({
     aboutText: "",
     aboutEmail: "",
   });
   // works
-  const [worksData, setWorksData] = useState([
-    {
-      id: 1,
-      image: work1,
-      name: "",
-      statement: "",
-      category: "",
-      about: "",
-    },
-    {
-      id: 2,
-      image: work2,
-      name: "",
-      statement: "",
-      category: "",
-      about: "",
-    },
-    {
-      id: 3,
-      image: work3,
-      name: "",
-      statement: "",
-      category: "",
-      about: "",
-    },
-  ]);
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     try {
+  //       const response = await fetch("http://localhost:5000/api/get-work");
+  //       const result = await response.json();
+  //       console.log(result, "get works");
+  //       setWorksData(result)
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //     }
+  //   }
+
+  //   fetchData(); // Call the async function immediately
+  // }, []);
+  const [worksData, setWorksData] = useState([]);
   // video arts
+  useEffect(() => {
+      async function fetchData() {
+        try {
+          const response = await fetch("http://localhost:5000/api/get-youtube");
+          const result = await response.json();
+          console.log(result, "get videos");
+          setVideoArtsData(result)
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      }
+  
+      fetchData(); // Call the async function immediately
+    }, []);
   const [videoArtsData, setVideoArtsData] = useState([
     {
       id: 1,
@@ -159,13 +152,27 @@ const MyProvider = ({ children }) => {
     },
   ]);
   //   contact
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch("http://localhost:5000/api/get-Socialmedia");
+        const result = await response.json();
+        console.log(result, "get contacts");
+        setContactData(result)
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    fetchData(); // Call the async function immediately
+  }, []);
   const [contactData, setContactData] = useState({
-    image: contactsImage,
-    email: "",
-    pinterest: "",
-    linkedin: "",
-    youtube: "",
-    instagram: "",
+    SocialMediaURL: contactsImage,
+    SocialMediaEmail: "",
+    SocialMediaPintrest: "",
+    SocialMediaLinkdin: "",
+    SocialMediaYoutube: "",
+    SocialMediaInstagram: "",
   });
 
   // functions -----------------------------------------------------------------------------------------

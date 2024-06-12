@@ -16,72 +16,46 @@ export default function EdittVideos() {
 
   const [Modal, setModal] = useState("none");
 
-  const [videoCards, setVideoCards] = useState(videoArtsData);
-
   const [name, setName] = useState("");
   const [link, setLink] = useState("");
   const [statement, setStatement] = useState("");
   const [category, setCategory] = useState("");
 
-  // const handleCards = () => {
-  //   if (name !== "" && link !== "" && statement !== "" && category !== "" ) {
-  //     setVideoCards([
-  //       ...videoCards,
-  //       {
-  //         id: videoCards.length + 1,
-  //         link: link,
-  //         name: name,
-  //         statement: statement,
-  //         category: category,
-  //       },
-  //     ]);
-  //     setName("");
-  //     setLink("");
-  //     setStatement("");
-  //     setCategory("");
-  //   } else {
-  //     alert("You need to fill inputs");
-  //   }
-  // };
-  // const handleDeleteCard = (id) => {
-  //   const updatedCards = videoCards.filter((card) => card.id !== id);
-  //   setVideoCards(updatedCards);
-  // };
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch("http://localhost:5000/api/delete-youtube", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({id}),
+      });
 
-  const cardLi = videoCards.map((item) => (
+      const result = await response.json();
+      if(result){
+        toast.success("video art has been removed succesfully");
+      }
+    } catch (error) {
+      console.error("Error updating data:", error);
+    }
+  }
+
+  const cardLi = videoArtsData.map((item) => (
     <ul key={item.id}>
-      <li>{item.name}</li>
-      <span onClick={() => handleDeleteCard(item.id)} className="delete-card">
+      <li>{item.title}</li>
+      <span onClick={() => handleDelete(item.id)} className="delete-card">
         delete item
       </span>
     </ul>
   ));
-
-  // const { changeVideosData } = useContext(MyContext);
-
-  // const videosHandler = (event) => {
-  //   if(videoCards){
-  //       event.preventDefault();
-  //       changeVideosData(
-  //         videoCards,
-  //       );
-  //       setModal("none");
-  //   } else{
-  //       alert("you dont have any work to post")
-  //   }
-  // };
 
   const videoHandler = async () => {
     const title = name;
     const YoutubeURL = link;
     if (name !== "" && link !== "" && statement !== "") {
       try {
-        const logoURL = {
-          logoURL: selectedImage.direction,
-        };
-
         const response = await fetch("http://localhost:5000/api/add-youtube", {
-          method: "PUT",
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
@@ -111,7 +85,7 @@ export default function EdittVideos() {
         <iframe
           width="560"
           height="480"
-          src={`https://www.youtube.com/embed/${lastVideoArt.link}`}
+          src={`https://www.youtube.com/embed/${lastVideoArt.YoutubeURL}`}
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
