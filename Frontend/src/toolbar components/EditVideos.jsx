@@ -10,7 +10,7 @@ export default function EdittVideos() {
   const { videoArtsData } = useContext(MyContext);
 
   const lastVideoArt =
-    videoArtsData && videoArtsData.length > 0
+    videoArtsData
       ? videoArtsData[videoArtsData.length - 1]
       : null;
 
@@ -40,10 +40,10 @@ export default function EdittVideos() {
     }
   }
 
-  const cardLi = videoArtsData.map((item) => (
-    <ul key={item.id}>
+  const cardLi = videoArtsData && videoArtsData.map((item, index) => (
+    <ul key={index}>
       <li>{item.title}</li>
-      <span onClick={() => handleDelete(item.id)} className="delete-card">
+      <span onClick={() => handleDelete(item._id)} className="delete-card">
         delete item
       </span>
     </ul>
@@ -75,6 +75,13 @@ export default function EdittVideos() {
     }
   }
 
+  const getYouTubeEmbedUrl = (url) => {
+    if(lastVideoArt.YoutubeURL){
+      const match = url.match(/embed\/([^\?]*)/);
+      return match ? match[1] : "";
+    }
+  };
+
   return (
     <div className="latest-video">
       <div className="latest-video-title">
@@ -85,7 +92,7 @@ export default function EdittVideos() {
         <iframe
           width="560"
           height="480"
-          src={`https://www.youtube.com/embed/${lastVideoArt.YoutubeURL}`}
+          src={videoArtsData[0] ? `https://www.youtube.com/embed/${getYouTubeEmbedUrl(lastVideoArt.YoutubeURL)}` : ""}
           title="YouTube video player"
           frameBorder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

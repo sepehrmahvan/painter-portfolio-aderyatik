@@ -28,7 +28,7 @@ export default function EditAbout() {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(About),
+          body: JSON.stringify({title, email}),
         });
 
         const result = await response.json();
@@ -48,7 +48,7 @@ export default function EditAbout() {
     <div className="about">
       <div className="about-text">
         <h2>ABOUT ME</h2>
-        <p>{aboutData.aboutText}</p>
+        <p>{aboutData.aboutTitle}</p>
         <h3>CONTACT INFORMATION</h3>
         <div className="about-contact">
           <p className="about-contact-icon">

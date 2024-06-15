@@ -18,8 +18,8 @@ export default function EditWorks() {
   const { worksData } = useContext(MyContext);
 
   const items = worksData.map((item) => (
-    <div key={item.id} className="work-item">
-      <img src={item.image} alt="my-work" />
+    <div key={item._id} className="work-item">
+      <img src={`http://localhost:5000/${item.workSampleURL}`} alt="my-work" />
     </div>
   ));
 
@@ -31,8 +31,6 @@ export default function EditWorks() {
   };
 
   const [Modal, setModal] = useState("none");
-
-  const [workCards, setWorkCards] = useState(worksData);
 
   const [name, setName] = useState("");
   const [statement, setStatement] = useState("");
@@ -82,10 +80,29 @@ export default function EditWorks() {
     </div>
   ));
 
-  const cardLi = workCards.map((item) => (
-    <ul key={item.id}>
-      <li>{item.name}</li>
-      <span onClick={() => handleDeleteCard(item.id)} className="delete-card">
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch("http://localhost:5000/api/delete-work", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({id}),
+      });
+
+      const result = await response.json();
+      if(result){
+        toast.success("you work has been removed succesfully");
+      }
+    } catch (error) {
+      console.error("Error updating data:", error);
+    }
+  }
+
+  const cardLi = worksData.map((item) => (
+    <ul key={item._id}>
+      <li>{item.workSampleTitle}</li>
+      <span onClick={() => handleDelete(item._id)} className="delete-card">
         delete item
       </span>
     </ul>

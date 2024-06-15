@@ -98,20 +98,21 @@ const MyProvider = ({ children }) => {
     aboutEmail: "",
   });
   // works
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     try {
-  //       const response = await fetch("http://localhost:5000/api/get-work");
-  //       const result = await response.json();
-  //       console.log(result, "get works");
-  //       setWorksData(result)
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //     }
-  //   }
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const response = await fetch("http://localhost:5000/api/get-work");
+        const result = await response.json();
+        console.log(result, "get works");
+        setWorksData(result)
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
 
-  //   fetchData(); // Call the async function immediately
-  // }, []);
+    fetchData(); // Call the async function immediately
+  }, []);
+  
   const [worksData, setWorksData] = useState([]);
   // video arts
   useEffect(() => {
