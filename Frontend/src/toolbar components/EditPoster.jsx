@@ -15,7 +15,7 @@ export default function EditPoster() {
 
   const [Modal, setModal] = useState("none");
 
-  const { galleryStore, refreshing, changePoster } = useContext(MyContext);
+  const { galleryStore, refreshing } = useContext(MyContext);
 
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -80,7 +80,6 @@ export default function EditPoster() {
         const result = await response.json();
         console.log(result.message);
         toast.success(result.message);
-        // setGalleryStore(result);
       } catch (error) {
         console.error("Error updating data:", error);
       }
@@ -99,13 +98,13 @@ export default function EditPoster() {
 
   return (
     <div
-      style={{ background: `url(${posterData.posterImage})` }}
+      style={{ background: `url(http://localhost:5000/${posterData.headerImage})` }}
       className="poster"
     >
       <div className="poster-text">
-        <h3>{posterData.job}</h3>
-        <h1>{posterData.name}</h1>
-        <h2>{posterData.slogan}</h2>
+        <h3>{posterData.jobTitle}</h3>
+        <h1>{posterData.nameTitle}</h1>
+        <h2>{posterData.sloganTitle}</h2>
         <a href={posterData.cv}>DOWNLOAD CV</a>
       </div>
       <button onClick={() => setModal("flex")} className="edit edit-poster">

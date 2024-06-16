@@ -7,8 +7,9 @@ import { IoMdDoneAll } from "react-icons/io";
 import { IoCloseSharp } from "react-icons/io5";
 import { toast } from "react-toastify";
 
+
 export default function EditLogo() {
-  const { logoData, changeLogo, setImage, handleAddToGallery, Image } =
+  const { logoData, handleAddToGallery } =
     useContext(MyContext);
   //   edit logo
   const [Modal, setModal] = useState("none");
@@ -31,32 +32,27 @@ export default function EditLogo() {
   //   const handleRefresh = () => {
   //     refreshGalleryStore();
   //   };
+
   // ! RAMTIN ADDED
-  console.log(selectedImage, "selectedImage");
   async function LogoHandler(event) {
     event.preventDefault();
     if (selectedImage !== null) {
       try {
-        const logoURL = {
-          logoURL: selectedImage.direction,
-        };
-
-        const response = await fetch("http://localhost:5000/api/updateuser", {
+        const logoData = selectedImage.direction;
+        const response = await fetch("http://localhost:5000/api/update-logo", {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(logoURL),
+          body: JSON.stringify({logoData}),
         });
 
         const result = await response.json();
         console.log(result);
-        // setGalleryStore(result);
+        toast.success(result.message);
       } catch (error) {
         console.error("Error updating data:", error);
       }
-
-      changeLogo(selectedImage);
       setModal("none");
     } else {
       toast.error("you need to choose one picture");
@@ -107,7 +103,7 @@ export default function EditLogo() {
         </button>
       </div>
       <div className="logo">
-        <img src={logoData} alt="" />
+        <img src={`http://localhost:5000/${logoData}`} alt="logo" />
       </div>
       {/* edit logo */}
       <div className="edit-modal" style={{ display: Modal }}>

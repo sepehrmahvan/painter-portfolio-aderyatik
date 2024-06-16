@@ -9,6 +9,7 @@ import { MyContext } from "../Context/Context";
 import { MdEdit } from "react-icons/md";
 import { IoMdDoneAll } from "react-icons/io";
 import { IoCloseSharp } from "react-icons/io5";
+import { toast } from "react-toastify";
 
 export default function EditContacts() {
   const { contactData } = useContext(MyContext);
@@ -41,6 +42,8 @@ export default function EditContacts() {
   //     refreshGalleryStore();
   //   };
 
+  console.log(galleryStore, "gallery");
+
   const gallerySection = galleryStore.map((imageUrl, index) => (
     <div
       className="gallery-store-container"
@@ -48,14 +51,14 @@ export default function EditContacts() {
       style={{ position: "relative", display: "inline-block" }}
     >
       <img
-        onClick={() => handleImageClick(imageUrl)}
+        onClick={() => handleImageClick(imageUrl.direction)}
         style={{
-          border: selectedImage === imageUrl ? "2px solid blue" : "none",
+          border: selectedImage === imageUrl.direction ? "2px solid blue" : "none",
         }}
-        src={imageUrl}
+        src={`http://localhost:5000/${imageUrl.direction}`}
         alt="image"
       />
-      {selectedImage === imageUrl && (
+      {selectedImage === imageUrl.direction && (
         <div className="clicked-image">
           <IoMdDoneAll />
         </div>
@@ -63,21 +66,37 @@ export default function EditContacts() {
     </div>
   ));
 
-  const { changeContacts } = useContext(MyContext)
-
-  const contactsHandler = (e) => {
-    e.preventDefault();
-    if(email !== "" && selectedImage !== ""){
-        changeContacts(selectedImage, email, pinterest, linkedIn, youtube, instagram)
-        setModal('none');
-    } else{
-        alert('you need to fill at least email input and choose an image')
-    }
-  }
-
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(contactData.email);
     alert("Email copied to clipboard!");
+  };
+
+  const contactHandler = async (e) => {
+    e.preventDefault();
+    // ! ramtin added
+    const SocialMediaURL = selectedImage;
+    const SocialMediaEmail = email;
+    const SocialMediaPintrest = pinterest;
+    const SocialMediaInstagram = instagram;
+    const SocialMediaLinkdin = linkedIn;
+    const SocialMediaYoutube = youtube;
+    try {
+      const response = await fetch("http://localhost:5000/api/update-Socialmedia", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({SocialMediaURL, SocialMediaEmail, SocialMediaPintrest, SocialMediaInstagram, SocialMediaLinkdin, SocialMediaYoutube}),
+      });
+
+      const result = await response.json();
+      console.log(result.message);
+      toast.success(result.message);
+      setModal("none");
+      // setGalleryStore(result);
+    } catch (error) {
+      toast.error("you need to fill the empty inputs")
+    }
   };
 
   return (
@@ -89,13 +108,13 @@ export default function EditContacts() {
             <p className="contact-icon">
               <MdOutlineMailOutline />
             </p>
-            <p onClick={handleCopyEmail} className="contact-text">{contactData.email}</p>
+            <p onClick={handleCopyEmail} className="contact-text">{contactData.SocialMediaEmail}</p>
           </div>
           <div className="contact-info">
             <p className="contact-icon">
               <FaPinterestP />
             </p>
-            <a href={contactData.pinterest} className="contact-text">
+            <a href={contactData.SocialMediaPintrest} className="contact-text">
               Pinterest
             </a>
           </div>
@@ -103,7 +122,7 @@ export default function EditContacts() {
             <p className="contact-icon">
               <TiSocialLinkedin />
             </p>
-            <a href={contactData.linkedin} className="contact-text">
+            <a href={contactData.SocialMediaLinkdin} className="contact-text">
               LinkedIn
             </a>
           </div>
@@ -111,7 +130,7 @@ export default function EditContacts() {
             <p className="contact-icon">
               <FaYoutube />
             </p>
-            <a href={contactData.youtube} className="contact-text">
+            <a href={contactData.SocialMediaYoutube} className="contact-text">
               Youtube
             </a>
           </div>
@@ -119,21 +138,21 @@ export default function EditContacts() {
             <p className="contact-icon">
               <FaInstagram />
             </p>
-            <a href={contactData.instagram} className="contact-text">
+            <a href={contactData.SocialMediaInstagram} className="contact-text">
               Instagram
             </a>
           </div>
         </div>
       </div>
       <div className="contact-image">
-        <img src={contactData.image} alt="" />
+        <img src={`http://localhost:5000/${contactData.SocialMediaURL}`} alt="" />
       </div>
       <button onClick={() => setModal("flex")} className="edit edit-contacts">
         <MdEdit />
       </button>
       {/* edit videos */}
       <div className="edit-modal" style={{ display: Modal }}>
-        <form onSubmit={contactsHandler}>
+        <form onSubmit={contactHandler}>
           {/* gallery store */}
           <h4>choose images from your gallery</h4>
           {/* <span onClick={handleRefresh} className="refresh-button">

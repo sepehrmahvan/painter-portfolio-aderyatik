@@ -110,17 +110,15 @@ exports.handleAddSample = async (req, res, next) => {
     next(err);
   }
 };
-// // ? GET Work samples
-// exports.handleGetSample = async (req, res, next) => {
-//   try {
-//     console.log("first")
-//     const workSample = await Sample.find();
-//     console.log(workSample)
-//     res.status(200).json(workSample);
-//   } catch (err) {
-//     next(err);
-//   }
-// };
+// ? GET Work samples
+exports.handleGetSample = async (req, res, next) => {
+  try {
+    const workSample = await Sample.findOne();
+    res.status(200).json(workSample);
+  } catch (err) {
+    next(err);
+  }
+};
 // ? delete Work samples
 exports.handleDeleteSample = async (req, res, next) => {
   const { id } = req.body;
@@ -139,7 +137,7 @@ exports.handleDeleteSample = async (req, res, next) => {
 // ? GET Work samples
 exports.handleGetSample = async (req, res, next) => {
   try {
-    const workSample = await Sample.findOne();
+    const workSample = await Sample.find();
     res.status(200).json(workSample);
   } catch (err) {
     next(err);
