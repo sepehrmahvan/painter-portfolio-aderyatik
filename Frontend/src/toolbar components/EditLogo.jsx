@@ -7,10 +7,8 @@ import { IoMdDoneAll } from "react-icons/io";
 import { IoCloseSharp } from "react-icons/io5";
 import { toast } from "react-toastify";
 
-
 export default function EditLogo() {
-  const { logoData, handleAddToGallery } =
-    useContext(MyContext);
+  const { logoData, handleAddToGallery } = useContext(MyContext);
   //   edit logo
   const [Modal, setModal] = useState("none");
 
@@ -33,9 +31,10 @@ export default function EditLogo() {
   //     refreshGalleryStore();
   //   };
 
-  // ! RAMTIN ADDED
+  // ! RAMTIN ADDED token added
   async function LogoHandler(event) {
     event.preventDefault();
+    const token = localStorage.getItem("token");
     if (selectedImage !== null) {
       try {
         const logoData = selectedImage.direction;
@@ -43,8 +42,9 @@ export default function EditLogo() {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
+            Authorization: token,
           },
-          body: JSON.stringify({logoData}),
+          body: JSON.stringify({ logoData }),
         });
 
         const result = await response.json();
@@ -94,11 +94,18 @@ export default function EditLogo() {
         <a href="#">ABOUT</a>
         <a href="CONTACT">CONTACT</a>
       </nav>
-      <div style={{display: "flex",}} className="edit-logo-buttons">
-        <button style={{margin: "0 20px"}} onClick={() => setModal("flex")} className="edit edit-logo">
+      <div style={{ display: "flex" }} className="edit-logo-buttons">
+        <button
+          style={{ margin: "0 20px" }}
+          onClick={() => setModal("flex")}
+          className="edit edit-logo"
+        >
           <MdEdit />
         </button>
-        <button onClick={() => setUploadModal("flex")} className="edit edit-logo">
+        <button
+          onClick={() => setUploadModal("flex")}
+          className="edit edit-logo"
+        >
           <MdUpload />
         </button>
       </div>

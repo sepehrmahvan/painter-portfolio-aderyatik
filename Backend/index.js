@@ -6,7 +6,6 @@ const cors = require("cors");
 const connectDB = require("./config/db");
 
 const app = express();
-
 //* Load Config
 dotEnv.config({ path: "./config/config.env" });
 

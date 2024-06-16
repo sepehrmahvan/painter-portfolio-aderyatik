@@ -1,19 +1,34 @@
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 exports.handleLogin = async (req, res, next) => {
   const { email, password } = req.body;
-
   try {
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).send("آدرس ایمیل یا کلمه عبور اشتباه است");
+      return res.status(404).json({ message: "Username or password Is Wrong" });
     }
     const isEqual = await bcrypt.compare(password, user.password);
     if (isEqual) {
-      res.status(200).json({ user });
+      const token = jwt.sign(
+        {
+          userId: user._id.toString(),
+          email: user.email,
+        },
+        process.env.JWT_SECRET,
+        { expiresIn: 300 }
+      );
+      res
+        .status(200)
+        .setHeader("Authorization", token)
+        .json({
+          token,
+          userId: user._id.toString(),
+          message: `Welcome back ${user.email}`,
+        });
     } else {
-      res.status(400).send("آدرس ایمیل یا کلمه عبور اشتباه است");
+      res.status(401).json({ message: "Username or password Is Wrong" });
     }
   } catch (err) {
     next(err);
@@ -21,15 +36,14 @@ exports.handleLogin = async (req, res, next) => {
 };
 
 exports.updateUser = async (req, res, next) => {
-  const { username, email } = req.body;
+  const { email } = req.body;
   try {
-    const user = await User.findOne();
+    const user = await User.findOne({ email });
     // Check if the user exists
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
     if (username) {
-      user.username = username;
       user.email = email;
       await user.save();
     }
@@ -50,7 +64,6 @@ exports.getUser = async (req, res) => {
 };
 
 exports.handleResetPassword = async (req, res, next) => {
-
   const { oldPassword, newPassword, confirmPassword } = req.body;
   const user = await User.findOne();
   const { password } = user;
@@ -74,4 +87,3 @@ exports.handleResetPassword = async (req, res, next) => {
     next(err);
   }
 };
-
