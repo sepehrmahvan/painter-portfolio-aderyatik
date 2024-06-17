@@ -17,7 +17,6 @@ exports.handleLogin = async (req, res, next) => {
           email: user.email,
         },
         process.env.JWT_SECRET,
-        { expiresIn: 300 }
       );
       res
         .status(200)

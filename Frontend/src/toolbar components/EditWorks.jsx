@@ -81,11 +81,13 @@ export default function EditWorks() {
   ));
 
   const handleDelete = async (id) => {
+    const token = localStorage.getItem("token");
     try {
       const response = await fetch("http://localhost:5000/api/delete-work", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
+          Authorization: token,
         },
         body: JSON.stringify({id}),
       });
@@ -116,6 +118,7 @@ export default function EditWorks() {
     const workSampleCategory = category;
     const workSampleAbout = about;
     const workSampleStatement = statement;
+    const token = localStorage.getItem("token");
     if (
       selectedImage !== "" &&
       name !== "" &&
@@ -128,6 +131,7 @@ export default function EditWorks() {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: token,
           },
           body: JSON.stringify({
             workSampleURL,

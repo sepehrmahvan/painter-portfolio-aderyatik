@@ -58,6 +58,7 @@ export default function EditPoster() {
   async function posterHandler(event) {
     event.preventDefault();
 // ! ramtin added
+    const token = localStorage.getItem("token");
     if (selectedImage !== null) {
       try {
         const Poster = {
@@ -72,6 +73,7 @@ export default function EditPoster() {
             method: "PUT",
             headers: {
               "Content-Type": "application/json",
+              Authorization: token,
             },
             body: JSON.stringify(Poster),
           }

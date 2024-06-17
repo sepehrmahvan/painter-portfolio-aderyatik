@@ -18,6 +18,7 @@ export default function EditAbout() {
     // ! ramtin added
     const title = aboutText;
     const email = aboutEmail;
+    const token = localStorage.getItem("token");
     if (aboutText !== "" && aboutEmail !== "") {
       try {
         const About = {
@@ -27,6 +28,7 @@ export default function EditAbout() {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
+            Authorization: token,
           },
           body: JSON.stringify({title, email}),
         });

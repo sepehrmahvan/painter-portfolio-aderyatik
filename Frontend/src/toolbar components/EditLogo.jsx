@@ -13,7 +13,7 @@ export default function EditLogo() {
   const [Modal, setModal] = useState("none");
 
   // console.log(image)
-  const { galleryStore, refreshing } = useContext(MyContext);
+  const { galleryStore, refreshing, setImage } = useContext(MyContext);
 
   const [selectedImage, setSelectedImage] = useState(null);
 
