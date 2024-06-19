@@ -63,11 +63,10 @@ exports.getUser = async (req, res) => {
 };
 
 exports.handleResetPassword = async (req, res, next) => {
-  const { oldPassword, newPassword, confirmPassword } = req.body;
-  const user = await User.findOne();
+  const { oldPassword, newPassword, confirmPassword , email } = req.body;
+  const user = await User.findOne({email});
   const { password } = user;
   const isEqual = await bcrypt.compare(oldPassword, password);
-
   try {
     if (!isEqual) {
       return res.status(400).send("Passwords Dont Match");
