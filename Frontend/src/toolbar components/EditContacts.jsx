@@ -42,8 +42,6 @@ export default function EditContacts() {
   //     refreshGalleryStore();
   //   };
 
-  console.log(galleryStore, "gallery");
-
   const gallerySection = galleryStore.map((imageUrl, index) => (
     <div
       className="gallery-store-container"

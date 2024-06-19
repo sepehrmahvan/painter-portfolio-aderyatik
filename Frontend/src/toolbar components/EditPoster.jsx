@@ -131,7 +131,7 @@ export default function EditPoster() {
             value={job}
           />
           {/* name editor */}
-          <h4>edit your name title text</h4>
+          <h4>edit your name text</h4>
           <input
             className="content"
             onChange={(e) => setName(e.target.value)}
@@ -140,7 +140,7 @@ export default function EditPoster() {
             value={name}
           />
           {/* slogan edittor */}
-          <h4>edit your slogan title text</h4>
+          <h4>edit your slogan text</h4>
           <input
             className="content"
             onChange={(e) => setSlogan(e.target.value)}
@@ -148,6 +148,9 @@ export default function EditPoster() {
             placeholder="slogan"
             value={slogan}
           />
+          <h4>upload pdf file of your resume</h4>
+          <input type="file" />
+          <span className="upload-cv">Upload Cv</span>
           <button className="save" type="submit">
             save changes
           </button>

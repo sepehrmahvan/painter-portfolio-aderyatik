@@ -18,7 +18,6 @@ const MyProvider = ({ children }) => {
       try {
         const response = await fetch("http://localhost:5000/api/get-image");
         const result = await response.json();
-        console.log(result, "get gallery");
         setGalleryStore(result);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -27,42 +26,24 @@ const MyProvider = ({ children }) => {
 
     fetchData(); // Call the async function immediately
   }, []);
-  // !ramtin Added set logo data
-  // useEffect(() => {
-  //   async function update() {
-  //     try {
-  //       const dataToUpdate = { /* your data here */ };
 
-  //       const response = await fetch('http://localhost:5000/api/updateuser', {
-  //         method: 'PUT',
-  //         headers: {
-  //           'Content-Type': 'application/json'
-  //         },
-  //         body: JSON.stringify(dataToUpdate)
-  //       });
-
-  //       const result = await response.json();
-  //       console.log(result);
-  //       // setGalleryStore(result);
-  //     } catch (error) {
-  //       console.error('Error updating data:', error);
-  //     }
-  //   }
-
-  //   update(); // Call the async function immediately
-  // }, []);
   const [refreshing, setRefreshing] = useState(false);
   // logo
   useEffect(() => {
     fetch("http://localhost:5000/api/get-logo").then(res => res.json()).then(res => setLogoData(res.FoundLogo.logoURL));
   }, [])
-  const [logoData, setLogoData] = useState();
+  const [logoData, setLogoData] = useState(logoImage);
+
+  // poster
   useEffect(() => {
     async function fetchData() {
       try {
         const response = await fetch("http://localhost:5000/api/get-header");
         const result = await response.json();
-        setPosterData(result)
+        console.log(result, "get poster");
+        if(result){
+          setPosterData(result)
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -70,7 +51,6 @@ const MyProvider = ({ children }) => {
 
     fetchData(); // Call the async function immediately
   }, []);
-  // poster
   const [posterData, setPosterData] = useState({
     headerImage: posterImage,
     jobTitle: "",
@@ -85,7 +65,9 @@ const MyProvider = ({ children }) => {
         const response = await fetch("http://localhost:5000/api/get-about");
         const result = await response.json();
         console.log(result, "get about");
-        setAboutdata(result)
+        if(result){
+          setAboutdata(result)
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -104,7 +86,9 @@ const MyProvider = ({ children }) => {
         const response = await fetch("http://localhost:5000/api/get-work");
         const result = await response.json();
         console.log(result, "get works");
-        setWorksData(result)
+        if(result){
+          setWorksData(result)
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -121,7 +105,9 @@ const MyProvider = ({ children }) => {
           const response = await fetch("http://localhost:5000/api/get-youtube");
           const result = await response.json();
           console.log(result, "get videos");
-          setVideoArtsData(result)
+          if(result){
+            setVideoArtsData(result)
+          }
         } catch (error) {
           console.error("Error fetching data:", error);
         }
@@ -159,7 +145,9 @@ const MyProvider = ({ children }) => {
         const response = await fetch("http://localhost:5000/api/get-Socialmedia");
         const result = await response.json();
         console.log(result, "get contacts");
-        setContactData(result)
+        if(result){
+          setContactData(result)
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       }

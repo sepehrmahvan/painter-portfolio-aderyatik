@@ -6,6 +6,7 @@ import { MdEdit, MdUpload } from "react-icons/md";
 import { IoMdDoneAll } from "react-icons/io";
 import { IoCloseSharp } from "react-icons/io5";
 import { toast } from "react-toastify";
+import { FaPowerOff } from "react-icons/fa";
 
 export default function EditLogo() {
   const { logoData, handleAddToGallery } = useContext(MyContext);
@@ -107,6 +108,9 @@ export default function EditLogo() {
           className="edit edit-logo"
         >
           <MdUpload />
+        </button>
+        <button onClick={() => {localStorage.removeItem("token")}} className="log-out">
+          <FaPowerOff />
         </button>
       </div>
       <div className="logo">

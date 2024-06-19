@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Login.scss";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const [username, setUsername] = useState("");
@@ -49,6 +49,8 @@ export const Login = () => {
           value={password}
           placeholder="password"
         />
+        <br />
+        <Link to={'/update-password'}>change passowrd</Link>
         <br />
         <button type="submit">Login</button>
       </form>

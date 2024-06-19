@@ -8,24 +8,6 @@ div.toolbar {
   box-sizing: border-box;
   position: relative;
   z-index: 100;
-  button.confirm-changes {
-    position: fixed;
-    bottom: 30px;
-    left: 30px;
-    z-index: 150;
-    background: linear-gradient(to right bottom, $main-color, #004675);
-    border: 0;
-    padding: 15px 20px;
-    color: white;
-    border-radius: 15px;
-    font-size: 1.2vw;
-    box-shadow: 0 0 15px #0099ff;
-    cursor: pointer;
-  }
-  button.confirm-changes:hover {
-    background: #0099ff;
-    color: white;
-  }
   .slanted-line {
     color: blue;
     font-size: 24px;
@@ -122,6 +104,18 @@ div.toolbar {
         display: flex;
       }
     }
+  }
+  button.log-out{
+    background-color: transparent;
+    border: 0;
+    margin-left: 20px;
+    font-size: 2vw;
+    color: white;
+    transition: 300ms;
+    cursor: pointer;
+  }
+  button.log-out:hover{
+    color: gold;
   }
   @keyframes edit-btn {
     0% {
@@ -272,26 +266,6 @@ div.edit-modal {
         padding: 10px;
       }
     }
-    span.font-weight {
-      padding: 7px;
-      border: 1px solid lightgray;
-      margin-right: 15px;
-      display: inline-block;
-      cursor: pointer;
-      svg {
-        font-size: 1.1vw;
-      }
-    }
-    span.font-style {
-      display: inline-block;
-      padding: 7px;
-      border: 1px solid lightgray;
-      margin-right: 15px;
-      cursor: pointer;
-      svg {
-        font-size: 1.1vw;
-      }
-    }
     span.close-modal {
       position: absolute;
       top: 20px;
@@ -330,6 +304,17 @@ div.edit-modal {
     }
     button.save:hover {
       background: #0099ff;
+    }
+    span.upload-cv{
+      padding: 7px 15px;
+      font-size: 1.1vw;
+      background-color: rgb(0, 104, 0);
+      color: white;
+      border-radius: 7px;
+      cursor: pointer;
+    }
+    span.upload-cv:hover{
+      background-color: rgb(0, 184, 0);
     }
     span.post-to-store {
       cursor: pointer;
