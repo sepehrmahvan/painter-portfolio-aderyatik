@@ -18,7 +18,7 @@ const MyProvider = ({ children }) => {
       try {
         const response = await fetch("http://localhost:5000/api/get-image");
         const result = await response.json();
-        console.log(result);
+        console.log(result, "get gallery");
         setGalleryStore(result);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -233,6 +233,7 @@ const MyProvider = ({ children }) => {
   // !RamtinAdded
   const [Image, setImage] = useState(null);
   const handleAddToGallery = async () => {
+    const token = localStorage.getItem("token");
     try {
       if (!Image) {
         console.log("No image selected.");
@@ -244,6 +245,9 @@ const MyProvider = ({ children }) => {
 
       const response = await fetch("http://localhost:5000/api/upload-image", {
         method: "POST",
+        headers: {
+          Authorization: token,
+        },
         body: formData,
       });
       if (response.ok) {

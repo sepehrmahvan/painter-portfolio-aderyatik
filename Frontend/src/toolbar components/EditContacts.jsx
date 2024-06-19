@@ -80,11 +80,13 @@ export default function EditContacts() {
     const SocialMediaInstagram = instagram;
     const SocialMediaLinkdin = linkedIn;
     const SocialMediaYoutube = youtube;
+    const token = localStorage.getItem("token");
     try {
       const response = await fetch("http://localhost:5000/api/update-Socialmedia", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
+          Authorization: token,
         },
         body: JSON.stringify({SocialMediaURL, SocialMediaEmail, SocialMediaPintrest, SocialMediaInstagram, SocialMediaLinkdin, SocialMediaYoutube}),
       });

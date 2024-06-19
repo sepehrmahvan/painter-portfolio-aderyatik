@@ -22,11 +22,13 @@ export default function EdittVideos() {
   const [category, setCategory] = useState("");
 
   const handleDelete = async (id) => {
+    const token = localStorage.getItem("token");
     try {
       const response = await fetch("http://localhost:5000/api/delete-youtube", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
+          Authorization: token,
         },
         body: JSON.stringify({id}),
       });
@@ -52,12 +54,14 @@ export default function EdittVideos() {
   const videoHandler = async () => {
     const title = name;
     const YoutubeURL = link;
+    const token = localStorage.getItem("token");
     if (name !== "" && link !== "" && statement !== "") {
       try {
         const response = await fetch("http://localhost:5000/api/add-youtube", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
+            Authorization: token,
           },
           body: JSON.stringify({title, YoutubeURL, statement, category}),
         });

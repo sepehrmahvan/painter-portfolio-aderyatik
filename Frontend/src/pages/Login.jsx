@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import "./Login.scss";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState(null);
+
+  const navigate = useNavigate();
+
   const loginHanlder = async (e) => {
     e.preventDefault();
     try {
@@ -20,7 +24,8 @@ export const Login = () => {
         throw new Error(errorResult.message || "Failed to login");
       }
       const result = await response.json();
-      localStorage.setItem('token', result.token)
+      localStorage.setItem('token', result.token);
+      navigate('/toolbar');
       toast.success(result.message);
     } catch (error) {
       console.error("Error updating data:", error);
