@@ -86,6 +86,8 @@ export default function EditLogo() {
 
   const [uploadModal, setUploadModal] = useState("none");
 
+  console.log(uploadModal);
+
   return (
     <header>
       <nav>
