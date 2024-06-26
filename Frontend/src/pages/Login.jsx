@@ -1,13 +1,11 @@
 import React, { useState } from "react";
 import "./Login.scss";
 import { toast } from "react-toastify";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState(null);
-
-  const navigate = useNavigate();
 
   const loginHanlder = async (e) => {
     e.preventDefault();
@@ -25,7 +23,7 @@ export const Login = () => {
       }
       const result = await response.json();
       localStorage.setItem('token', result.token);
-      navigate('/toolbar');
+      window.location.href = "./toolbar"
       toast.success(result.message);
     } catch (error) {
       console.error("Error updating data:", error);

@@ -9,10 +9,10 @@ export default function About() {
   const { aboutData } = useContext(MyContext);
 
   return (
-    <div className='about'>
+    <div id='about-me' className='about'>
         <div className="about-text">
             <h2>ABOUT ME</h2>
-            <p>{aboutData.aboutText}</p>
+            <p>{aboutData.aboutTitle}</p>
             <h3>CONTACT INFORMATION</h3>
             <div className="about-contact">
                 <p className="about-contact-icon"><MdEmail /></p>

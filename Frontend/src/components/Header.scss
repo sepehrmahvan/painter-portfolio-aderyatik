@@ -1,6 +1,302 @@
-@import '../main.scss';
+@import "../main.scss";
 
-header{
+@media screen and (min-width: 320px) {
+    header {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 5px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 10%);
+      z-index: 50;
+      button.menu-btn {
+        background-color: transparent;
+        border: 0;
+        font-size: 6vw;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+      nav {
+        width: 60%;
+        display: none;
+        a {
+          padding: 10px 10px;
+          letter-spacing: 4px;
+          font-size: 1.2vw;
+          text-decoration: none;
+          color: $second-color;
+          transition: 300ms;
+          margin: 0 10px;
+        }
+        a:hover {
+          color: $third-color;
+        }
+      }
+      div.logo {
+        width: 15%;
+        img {
+          width: 100%;
+        }
+      }
+      div.menu {
+        background-color: #232323;
+        border-right: 2px solid gold;
+        width: 70%;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+        padding: 25px;
+        box-sizing: border-box;
+        transition: 500ms;
+        z-index: 100;
+        div.menu-container {
+          margin-top: 60px;
+          a {
+            display: block;
+            padding: 15px 0;
+            font-size: 3.5vw;
+            text-decoration: none;
+            color: white;
+            transition: 300ms;
+            border-bottom: 2px solid gold;
+            margin: 20px 0;
+          }
+          a:hover {
+            color: gold;
+          }
+          span.close-menu {
+            position: absolute;
+            color: white;
+            top: 15px;
+            right: 15px;
+            font-size: 4.5vw;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+@media screen and (min-width: 576px) {
+    header {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 10%);
+      z-index: 50;
+      button.menu-btn {
+        background-color: transparent;
+        border: 0;
+        font-size: 5vw;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+      nav {
+        width: 60%;
+        a {
+          padding: 10px 10px;
+          letter-spacing: 4px;
+          font-size: 1.2vw;
+          text-decoration: none;
+          color: $second-color;
+          transition: 300ms;
+          margin: 0 10px;
+        }
+        a:hover {
+          color: $third-color;
+        }
+      }
+      div.logo {
+        width: 10%;
+        img {
+          width: 100%;
+        }
+      }
+      div.menu {
+        background-color: #232323;
+        border-right: 2px solid gold;
+        width: 60%;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+        padding: 25px;
+        box-sizing: border-box;
+        transition: 500ms;
+        div.menu-container {
+          margin-top: 60px;
+          a {
+            display: block;
+            padding: 15px 0;
+            font-size: 2.5vw;
+            text-decoration: none;
+            color: white;
+            transition: 300ms;
+            border-bottom: 2px solid gold;
+            margin: 20px 0;
+          }
+          a:hover {
+            color: gold;
+          }
+          span.close-menu {
+            position: absolute;
+            color: white;
+            top: 15px;
+            right: 15px;
+            font-size: 3.5vw;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+@media screen and (min-width: 768px) {
+    header {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 10%);
+      z-index: 50;
+      button.menu-btn {
+        background-color: transparent;
+        border: 0;
+        font-size: 4vw;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+      nav {
+        width: 60%;
+        a {
+          padding: 10px 10px;
+          letter-spacing: 4px;
+          font-size: 1.2vw;
+          text-decoration: none;
+          color: $second-color;
+          transition: 300ms;
+          margin: 0 10px;
+        }
+        a:hover {
+          color: $third-color;
+        }
+      }
+      div.logo {
+        width: 8%;
+        img {
+          width: 100%;
+        }
+      }
+      div.menu {
+        background-color: #232323;
+        border-right: 2px solid gold;
+        width: 60%;
+        height: 100vh;
+        position: fixed;
+        left: 0;
+        top: 0;
+        padding: 25px;
+        box-sizing: border-box;
+        transition: 500ms;
+        div.menu-container {
+          margin-top: 60px;
+          a {
+            display: block;
+            padding: 15px 0;
+            font-size: 1.5vw;
+            text-decoration: none;
+            color: white;
+            transition: 300ms;
+            border-bottom: 2px solid gold;
+            margin: 20px 0;
+          }
+          a:hover {
+            color: gold;
+          }
+          span.close-menu {
+            position: absolute;
+            color: white;
+            top: 15px;
+            right: 15px;
+            font-size: 2.5vw;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+@media screen and (min-width: 1024px) {
+    header {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 20px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255, 255, 255, 10%);
+      z-index: 50;
+      button.menu-btn {
+        background-color: transparent;
+        border: 0;
+        font-size: 3vw;
+        color: white;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+      nav {
+        width: 60%;
+        display: block;
+        a {
+          padding: 10px 10px;
+          letter-spacing: 4px;
+          font-size: 1.2vw;
+          text-decoration: none;
+          color: $second-color;
+          transition: 300ms;
+          margin: 0 10px;
+        }
+        a:hover {
+          color: $third-color;
+        }
+      }
+      div.logo {
+        width: 5%;
+        img {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+@media screen and (min-width: 1200px) {
+  header {
     position: absolute;
     top: 0;
     width: 100%;
@@ -9,27 +305,38 @@ header{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(255,255,255, 10%);
+    background: rgba(255, 255, 255, 10%);
     z-index: 50;
-    nav{
-        width: 60%;
-        a{
-            padding: 10px 10px;
-            letter-spacing: 4px;
-            font-size: 1.2vw;
-            text-decoration: none;
-            color: $second-color;
-            transition: 300ms;
-            margin: 0 10px;
-        }
-        a:hover{
-            color: $third-color;
-        }
+    button.menu-btn {
+      background-color: transparent;
+      border: 0;
+      font-size: 3vw;
+      color: white;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
     }
-    div.logo{
-        width: 12%;
-        img{
-            width: 100%;
-        }
+    nav {
+      width: 60%;
+      a {
+        padding: 10px 10px;
+        letter-spacing: 4px;
+        font-size: 1.2vw;
+        text-decoration: none;
+        color: $second-color;
+        transition: 300ms;
+        margin: 0 10px;
+      }
+      a:hover {
+        color: $third-color;
+      }
     }
+    div.logo {
+      width: 5%;
+      img {
+        width: 100%;
+      }
+    }
+  }
 }

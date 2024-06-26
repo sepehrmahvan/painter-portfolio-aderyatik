@@ -28,6 +28,18 @@ const MyProvider = ({ children }) => {
   }, []);
 
   const [refreshing, setRefreshing] = useState(false);
+
+  const refreshGalleryStore = async () => {
+    setRefreshing(true)
+    try {
+      const response = await fetch("http://localhost:5000/api/get-image");
+      const result = await response.json();
+      setGalleryStore(result);
+      setRefreshing(false)
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  }
   // logo
   useEffect(() => {
     fetch("http://localhost:5000/api/get-logo").then(res => res.json()).then(res => setLogoData(res.FoundLogo.logoURL));
@@ -217,42 +229,13 @@ const MyProvider = ({ children }) => {
       instagram: instagram,
     });
   };
-
-  // !RamtinAdded
-  const [Image, setImage] = useState(null);
-  const handleAddToGallery = async () => {
-    const token = localStorage.getItem("token");
-    try {
-      if (!Image) {
-        console.log("No image selected.");
-        return;
-      }
-
-      const formData = new FormData();
-      formData.append("image", Image);
-
-      const response = await fetch("http://localhost:5000/api/upload-image", {
-        method: "POST",
-        headers: {
-          Authorization: token,
-        },
-        body: formData,
-      });
-      if (response.ok) {
-        console.log("Image uploaded successfully!");
-        // Optionally, you can do something after successful upload
-      } else {
-        console.error("Failed to upload image.");
-      }
-    } catch (err) {
-      console.error("Error uploading image:", err);
-    }
-  };
+  
   // context value --------------------------------------------------
   const contextValue = {
     // gallery
     galleryStore,
     refreshing,
+    refreshGalleryStore,
     // logo
     logoData,
     changeLogo,
@@ -278,9 +261,6 @@ const MyProvider = ({ children }) => {
     changeContacts,
     setContactData,
     // ramtin added
-    setImage,
-    Image,
-    handleAddToGallery,
   };
   return <Provider value={contextValue}>{children}</Provider>;
 };

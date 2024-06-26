@@ -1,0 +1,421 @@
+
+
+@media screen and (min-width: 320px) {
+  div.video-art-page {
+    background-color: black;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: visible;
+    div.video-art-container {
+      position: relative;
+      top: 50px;
+      padding: 25px;
+      box-sizing: border-box;
+      div.video-art-category-buttons {
+        button {
+          padding: 10px 10px;
+          margin-right: 15px;
+          margin-top: 20px;
+          background-color: #232323;
+          color: white;
+          border: 0;
+          border-radius: 10px;
+          font-size: 3.3vw;
+          text-transform: uppercase;
+          font-family: "Franklin Gothic Medium", "Arial Narrow", Arial,
+            sans-serif;
+          cursor: pointer;
+          transition: 300ms;
+          border: 2px solid #232323;
+        }
+        button:hover {
+          border: 2px solid gold;
+        }
+      }
+      div.video-arts-cards {
+        box-sizing: border-box;
+        width: 100%;
+        margin-top: 30px;
+        div.video-card {
+          padding: 15px;
+          box-sizing: border-box;
+          display: flex;
+          background: linear-gradient(to top left, #232323 60%, #424242);
+          justify-content: flex-start;
+          align-items: flex-start;
+          flex-wrap: wrap;
+          margin-top: 30px;
+          border-radius: 15px;
+          div.video-player {
+            width: 100%;
+            iframe {
+              width: 100%;
+              height: 170px;
+              border-radius: 15px;
+            }
+          }
+          div.video-description {
+            padding: 0;
+            h2 {
+              font-size: 4.5vw;
+              color: white;
+              font-family: "Franklin Gothic Medium", "Arial Narrow", Arial,
+                sans-serif;
+              letter-spacing: 4px;
+              text-transform: uppercase;
+            }
+            h3 {
+              color: white;
+              font-size: 3.2vw;
+            }
+            p {
+              color: white;
+              font-size: 3.1vw;
+            }
+            span {
+              color: gold;
+              font-size: 3.1vw;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 576px) {
+  div.video-art-page {
+    background-color: black;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: visible;
+    div.video-art-container {
+      position: relative;
+      top: 60px;
+      padding: 25px;
+      box-sizing: border-box;
+      div.video-art-category-buttons {
+        button {
+          padding: 10px 15px;
+          margin-right: 15px;
+          background-color: #232323;
+          color: white;
+          border: 0;
+          border-radius: 10px;
+          font-size: 2.3vw;
+          text-transform: uppercase;
+          font-family: "Franklin Gothic Medium", "Arial Narrow", Arial,
+            sans-serif;
+          cursor: pointer;
+          transition: 300ms;
+          border: 2px solid #232323;
+        }
+        button:hover {
+          border: 2px solid gold;
+        }
+      }
+      div.video-arts-cards {
+        box-sizing: border-box;
+        width: 100%;
+        margin-top: 30px;
+        div.video-card {
+          padding: 15px;
+          box-sizing: border-box;
+          display: flex;
+          background: linear-gradient(to top left, #232323 60%, #424242);
+          justify-content: flex-start;
+          align-items: flex-start;
+          flex-wrap: nowrap;
+          margin-top: 30px;
+          border-radius: 15px;
+          div.video-player {
+            width: 200%;
+            iframe {
+              width: 100%;
+              height: 170px;
+              border-radius: 15px;
+            }
+          }
+          div.video-description {
+            padding: 0 25px;
+            width: 210%;
+            h2 {
+              font-size: 3.5vw;
+              color: white;
+              font-family: "Franklin Gothic Medium", "Arial Narrow", Arial,
+                sans-serif;
+              letter-spacing: 4px;
+              text-transform: uppercase;
+            }
+            h3 {
+              color: white;
+              font-size: 2.2vw;
+            }
+            p {
+              color: white;
+              font-size: 2.1vw;
+            }
+            span {
+              color: gold;
+              font-size: 2.1vw;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  div.video-art-page {
+    background-color: black;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: visible;
+    div.video-art-container {
+      position: relative;
+      top: 70px;
+      padding: 25px;
+      box-sizing: border-box;
+      div.video-art-category-buttons {
+        button {
+          padding: 10px 15px;
+          margin-right: 15px;
+          background-color: #232323;
+          color: white;
+          border: 0;
+          border-radius: 10px;
+          font-size: 1.8vw;
+          text-transform: uppercase;
+          font-family: "Franklin Gothic Medium", "Arial Narrow", Arial,
+            sans-serif;
+          cursor: pointer;
+          transition: 300ms;
+          border: 2px solid #232323;
+        }
+        button:hover {
+          border: 2px solid gold;
+        }
+      }
+      div.video-arts-cards {
+        box-sizing: border-box;
+        width: 100%;
+        margin-top: 30px;
+        div.video-card {
+          padding: 45px;
+          box-sizing: border-box;
+          display: flex;
+          background: linear-gradient(to top left, #232323 60%, #424242);
+          justify-content: flex-start;
+          align-items: flex-start;
+          margin-top: 30px;
+          border-radius: 15px;
+          div.video-player {
+            width: 150%;
+            iframe {
+              width: 100%;
+              height: 150px;
+              border-radius: 15px;
+            }
+          }
+          div.video-description {
+            padding: 0 25px;
+            width: 170%;
+            h2 {
+              font-size: 3vw;
+              color: white;
+              font-family: "Franklin Gothic Medium", "Arial Narrow", Arial,
+                sans-serif;
+              letter-spacing: 4px;
+              text-transform: uppercase;
+            }
+            h3 {
+              color: white;
+              font-size: 1.7vw;
+            }
+            p {
+              color: white;
+              font-size: 1.6vw;
+            }
+            span {
+              color: gold;
+              font-size: 1.6vw;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  div.video-art-page {
+    background-color: black;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: visible;
+    div.video-art-container {
+      position: relative;
+      top: 80px;
+      padding: 25px;
+      box-sizing: border-box;
+      div.video-art-category-buttons {
+        button {
+          padding: 15px 30px;
+          margin-right: 15px;
+          background-color: #232323;
+          color: white;
+          border: 0;
+          border-radius: 10px;
+          font-size: 1.3vw;
+          text-transform: uppercase;
+          font-family: "Franklin Gothic Medium", "Arial Narrow", Arial,
+            sans-serif;
+          cursor: pointer;
+          transition: 300ms;
+          border: 2px solid #232323;
+        }
+        button:hover {
+          border: 2px solid gold;
+        }
+      }
+      div.video-arts-cards {
+        box-sizing: border-box;
+        width: 100%;
+        margin-top: 30px;
+        div.video-card {
+          padding: 45px;
+          box-sizing: border-box;
+          display: flex;
+          background: linear-gradient(to top left, #232323 60%, #424242);
+          justify-content: flex-start;
+          align-items: flex-start;
+          margin-top: 30px;
+          border-radius: 15px;
+          div.video-player {
+            width: 150%;
+            iframe {
+              width: 100%;
+              height: 250px;
+              border-radius: 15px;
+            }
+          }
+          div.video-description {
+            padding: 0 25px;
+            h2 {
+              font-size: 2.5vw;
+              color: white;
+              font-family: "Franklin Gothic Medium", "Arial Narrow", Arial,
+                sans-serif;
+              letter-spacing: 4px;
+              text-transform: uppercase;
+            }
+            h3 {
+              color: white;
+              font-size: 1.6vw;
+            }
+            p {
+              color: white;
+              font-size: 1.4vw;
+            }
+            span {
+              color: gold;
+              font-size: 1.4vw;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  div.video-art-page {
+    background-color: black;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: visible;
+    div.video-art-container {
+      position: relative;
+      top: 110px;
+      padding: 25px;
+      box-sizing: border-box;
+      div.video-art-category-buttons {
+        button {
+          padding: 15px 30px;
+          margin-right: 15px;
+          background-color: #232323;
+          color: white;
+          border: 0;
+          border-radius: 10px;
+          font-size: 1.3vw;
+          text-transform: uppercase;
+          font-family: "Franklin Gothic Medium", "Arial Narrow", Arial,
+            sans-serif;
+          cursor: pointer;
+          transition: 300ms;
+          border: 2px solid #232323;
+        }
+        button:hover {
+          border: 2px solid gold;
+        }
+      }
+      div.video-arts-cards {
+        box-sizing: border-box;
+        width: 100%;
+        margin-top: 30px;
+        div.video-card {
+          padding: 45px;
+          box-sizing: border-box;
+          display: flex;
+          background: linear-gradient(to top left, #232323 60%, #424242);
+          justify-content: flex-start;
+          align-items: flex-start;
+          margin-top: 30px;
+          border-radius: 15px;
+          div.video-player {
+            width: 150%;
+            iframe {
+              width: 100%;
+              height: 310px;
+              border-radius: 15px;
+            }
+          }
+          div.video-description {
+            padding: 0 25px;
+            h2 {
+              font-size: 2.5vw;
+              color: white;
+              font-family: "Franklin Gothic Medium", "Arial Narrow", Arial,
+                sans-serif;
+              letter-spacing: 4px;
+              text-transform: uppercase;
+            }
+            h3 {
+              color: white;
+              font-size: 1.2vw;
+            }
+            p {
+              color: white;
+              font-size: 1.1vw;
+            }
+            span {
+              color: gold;
+              font-size: 1.1vw;
+            }
+          }
+        }
+      }
+    }
+  }
+}

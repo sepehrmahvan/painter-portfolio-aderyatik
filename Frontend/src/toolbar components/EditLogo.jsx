@@ -7,14 +7,17 @@ import { IoMdDoneAll } from "react-icons/io";
 import { IoCloseSharp } from "react-icons/io5";
 import { toast } from "react-toastify";
 import { FaPowerOff } from "react-icons/fa";
+import { IoMenu } from "react-icons/io5";
+import { IoMdClose } from "react-icons/io";
 
 export default function EditLogo() {
-  const { logoData, handleAddToGallery } = useContext(MyContext);
+  const { logoData } = useContext(MyContext);
   //   edit logo
   const [Modal, setModal] = useState("none");
+  const [uploadModal, setUploadModal] = useState("none");
 
   // console.log(image)
-  const { galleryStore, refreshing, setImage } = useContext(MyContext);
+  const { galleryStore, refreshing, refreshGalleryStore } = useContext(MyContext);
 
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -28,15 +31,15 @@ export default function EditLogo() {
     }
   };
 
-  //   const handleRefresh = () => {
-  //     refreshGalleryStore();
-  //   };
+  const handleRefresh = () => {
+    refreshGalleryStore();
+  };
 
   // ! RAMTIN ADDED token added
-  async function LogoHandler(event) {
+  const LogoHandler = async (event) => {
     event.preventDefault();
     const token = localStorage.getItem("token");
-    if (selectedImage !== null) {
+    if (selectedImage) {
       try {
         const logoData = selectedImage.direction;
         const response = await fetch("http://localhost:5000/api/update-logo", {
@@ -55,10 +58,10 @@ export default function EditLogo() {
         console.error("Error updating data:", error);
       }
       setModal("none");
-    } else {
-      toast.error("you need to choose one picture");
+    } else{
+      toast.error("you need to choose one image")
     }
-  }
+  };
   const gallerySection = galleryStore.map((imageUrl, index) => (
     <div
       className="gallery-store-container"
@@ -84,12 +87,43 @@ export default function EditLogo() {
     </div>
   ));
 
-  const [uploadModal, setUploadModal] = useState("none");
+  const [Image, setImage] = useState(null);
+  const handleAddToGallery = async () => {
+    const token = localStorage.getItem("token");
+    try {
+      if (!Image) {
+        console.log("No image selected.");
+        return;
+      }
+      const formData = new FormData();
+      formData.append("image", Image);
+      const response = await fetch("http://localhost:5000/api/upload-image", {
+        method: "POST",
+        headers: {
+          Authorization: token,
+        },
+        body: formData,
+      });
+      if (response.ok) {
+        toast.success("Image uploaded successfully!");
+        setUploadModal("none");
+      } else {
+        toast.error("Failed to upload image.");
+      }
+    } catch (err) {
+      console.error("Error uploading image:", err);
+    }
+  };
 
-  console.log(uploadModal);
+  // menu
+
+  const [showMenu, setShowMenu] = useState("-100%");
 
   return (
     <header>
+      <button onClick={() => setShowMenu("0")} className="menu-btn">
+        <IoMenu />
+      </button>
       <nav>
         <Link to={"/"}>HOME</Link>
         <Link to={"/works"}>WORKS</Link>
@@ -111,24 +145,43 @@ export default function EditLogo() {
         >
           <MdUpload />
         </button>
-        <button onClick={() => {localStorage.removeItem("token")}} className="log-out">
+        <button
+          onClick={() => {
+            localStorage.removeItem("token");
+            window.location.href = "/";
+          }}
+          className="log-out"
+        >
           <FaPowerOff />
         </button>
       </div>
       <div className="logo">
         <img src={`http://localhost:5000/${logoData}`} alt="logo" />
       </div>
+      {/* menu */}
+      <div style={{ left: showMenu }} className="menu">
+        <div className="menu-container">
+          <Link to={"/"}>HOME</Link>
+          <Link to={"/works"}>WORKS</Link>
+          <Link to={"/video-arts"}>VIDEO ARTS</Link>
+          <a href="#about-me">ABOUT</a>
+          <a href="#contact-me">CONTACT</a>
+          <span onClick={() => setShowMenu("-100%")} className="close-menu">
+            <IoMdClose />
+          </span>
+        </div>
+      </div>
       {/* edit logo */}
       <div className="edit-modal" style={{ display: Modal }}>
-        <form onSubmit={LogoHandler}>
+        <form>
           {/* gallery store */}
           <h4>choose an image for your logo</h4>
-          {/* <span onClick={handleRefresh} className="refresh-button">
+          <span onClick={handleRefresh} className="refresh-button">
               {refreshing ? "Refreshing..." : "Refresh Gallery"}
-            </span> */}
+            </span>
 
           <div className="gallery-store">{gallerySection}</div>
-          <button className="save" type="submit">
+          <button onClick={LogoHandler}>
             save changes
           </button>
           <span className="close-modal" onClick={() => setModal("none")}>
@@ -136,8 +189,9 @@ export default function EditLogo() {
           </span>
         </form>
       </div>
+      {/* upload */}
       <div className="edit-modal" style={{ display: uploadModal }}>
-        <form onSubmit={LogoHandler}>
+        <form>
           <h4>upload image to your gallery</h4>
           {/* ramtinAdded */}
           <input
@@ -145,12 +199,8 @@ export default function EditLogo() {
             name="image"
             title="image"
             onChange={(e) => setImage(e.target.files[0])}
-            style={{ backgroundColor: "red" }}
           />
-          <button onClick={() => handleAddToGallery()}>Add To Gallery</button>
-          {/* <span onClick={handleRefresh} className="refresh-button">
-              {refreshing ? "Refreshing..." : "Refresh Gallery"}
-            </span> */}
+          <button className="save" onClick={handleAddToGallery}>Add To Gallery</button>
           <span onClick={() => setUploadModal("none")} className="close-modal">
             <IoCloseSharp />
           </span>

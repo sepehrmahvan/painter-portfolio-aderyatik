@@ -1,0 +1,415 @@
+
+
+@media screen and (min-width: 320px) {
+  div.works-page {
+    background-color: black;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    div.works-container {
+      position: relative;
+      top: 40px;
+      padding: 25px;
+      box-sizing: border-box;
+      div.works-category-buttons {
+        button {
+          padding: 10px 10px;
+          margin-right: 15px;
+          margin-top: 20px;
+          background-color: #232323;
+          color: white;
+          border: 0;
+          border-radius: 10px;
+          font-size: 3.3vw;
+          text-transform: uppercase;
+          font-family: "Franklin Gothic Medium", "Arial Narrow", Arial,
+            sans-serif;
+          cursor: pointer;
+          transition: 300ms;
+          border: 2px solid #232323;
+        }
+        button:hover {
+          border: 2px solid gold;
+        }
+      }
+      div.works-cards {
+        box-sizing: border-box;
+        width: 100%;
+        margin-top: 30px;
+        div.work-card {
+          padding: 10px;
+          box-sizing: border-box;
+          display: flex;
+          background: linear-gradient(to top left, #232323 60%, #424242);
+          justify-content: flex-start;
+          align-items: flex-start;
+          flex-wrap: wrap;
+          margin-top: 30px;
+          border-radius: 15px;
+          div.work-image {
+            width: 100%;
+            img {
+              width: 100%;
+              border-radius: 15px;
+            }
+          }
+          div.work-description {
+            padding: 0;
+            margin-top: 15px;
+            h2 {
+              font-size: 4.5vw;
+              color: white;
+              font-family: "Franklin Gothic Medium", "Arial Narrow", Arial,
+                sans-serif;
+              letter-spacing: 4px;
+              text-transform: uppercase;
+            }
+            h3 {
+              color: white;
+              font-size: 3.2vw;
+            }
+            p {
+              color: white;
+              font-size: 3.1vw;
+            }
+            span {
+              color: gold;
+              font-size: 3.1vw;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 576px) {
+  div.works-page {
+    background-color: black;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: visible;
+    div.works-container {
+      position: relative;
+      top: 60px;
+      padding: 25px;
+      box-sizing: border-box;
+      div.works-category-buttons {
+        button {
+          padding: 10px 10px;
+          margin-right: 15px;
+          margin-top: 20px;
+          background-color: #232323;
+          color: white;
+          border: 0;
+          border-radius: 10px;
+          font-size: 1.3vw;
+          text-transform: uppercase;
+          font-family: "Franklin Gothic Medium", "Arial Narrow", Arial,
+            sans-serif;
+          cursor: pointer;
+          transition: 300ms;
+          border: 2px solid #232323;
+        }
+        button:hover {
+          border: 2px solid gold;
+        }
+      }
+      div.works-cards {
+        width: 100%;
+        margin-top: 30px;
+        box-sizing: border-box;
+        div.work-card {
+          padding: 15px;
+          box-sizing: border-box;
+          display: flex;
+          background: linear-gradient(to top left, #232323 60%, #424242);
+          justify-content: flex-start;
+          align-items: flex-start;
+          flex-wrap: nowrap;
+          margin-top: 30px;
+          border-radius: 15px;
+          div.work-image {
+            width: 35%;
+            img {
+              width: 100%;
+              border-radius: 15px;
+            }
+          }
+          div.work-description {
+            padding: 0 25px;
+            h2 {
+              font-size: 3.5vw;
+              color: white;
+              font-family: "Franklin Gothic Medium", "Arial Narrow", Arial,
+                sans-serif;
+              letter-spacing: 4px;
+              text-transform: uppercase;
+            }
+            h3 {
+              color: white;
+              font-size: 2.2vw;
+            }
+            p {
+              color: white;
+              font-size: 2.1vw;
+            }
+            span {
+              color: gold;
+              font-size: 2.1vw;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  div.works-page {
+    background-color: black;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: visible;
+    div.works-container {
+      position: relative;
+      top: 70px;
+      padding: 25px;
+      box-sizing: border-box;
+      div.works-category-buttons {
+        button {
+          padding: 15px 30px;
+          margin-right: 15px;
+          background-color: #232323;
+          color: white;
+          border: 0;
+          border-radius: 10px;
+          font-size: 1.3vw;
+          text-transform: uppercase;
+          font-family: "Franklin Gothic Medium", "Arial Narrow", Arial,
+            sans-serif;
+          cursor: pointer;
+          transition: 300ms;
+          border: 2px solid #232323;
+        }
+        button:hover {
+          border: 2px solid gold;
+        }
+      }
+      div.works-cards {
+        box-sizing: border-box;
+        width: 100%;
+        margin-top: 30px;
+        div.work-card {
+          padding: 45px;
+          box-sizing: border-box;
+          display: flex;
+          background: linear-gradient(to top left, #232323 60%, #424242);
+          justify-content: flex-start;
+          align-items: flex-start;
+          margin-top: 30px;
+          border-radius: 15px;
+          div.work-image {
+            width: 35%;
+            img {
+              width: 100%;
+              border-radius: 15px;
+            }
+          }
+          div.work-description {
+            padding: 0 25px;
+            h2 {
+              font-size: 3vw;
+              color: white;
+              font-family: "Franklin Gothic Medium", "Arial Narrow", Arial,
+                sans-serif;
+              letter-spacing: 4px;
+              text-transform: uppercase;
+            }
+            h3 {
+              color: white;
+              font-size: 1.7vw;
+            }
+            p {
+              color: white;
+              font-size: 1.6vw;
+            }
+            span {
+              color: gold;
+              font-size: 1.6vw;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  div.works-page {
+    background-color: black;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: visible;
+    div.works-container {
+      position: relative;
+      top: 80px;
+      padding: 25px;
+      box-sizing: border-box;
+      div.works-category-buttons {
+        button {
+          padding: 15px 30px;
+          margin-right: 15px;
+          background-color: #232323;
+          color: white;
+          border: 0;
+          border-radius: 10px;
+          font-size: 1.3vw;
+          text-transform: uppercase;
+          font-family: "Franklin Gothic Medium", "Arial Narrow", Arial,
+            sans-serif;
+          cursor: pointer;
+          transition: 300ms;
+          border: 2px solid #232323;
+        }
+        button:hover {
+          border: 2px solid gold;
+        }
+      }
+      div.works-cards {
+        box-sizing: border-box;
+        width: 100%;
+        margin-top: 30px;
+        div.work-card {
+          padding: 45px;
+          box-sizing: border-box;
+          display: flex;
+          background: linear-gradient(to top left, #232323 60%, #424242);
+          justify-content: flex-start;
+          align-items: flex-start;
+          margin-top: 30px;
+          border-radius: 15px;
+          div.work-image {
+            width: 35%;
+            img {
+              width: 100%;
+              border-radius: 15px;
+            }
+          }
+          div.work-description {
+            padding: 0 25px;
+            h2 {
+              font-size: 2.5vw;
+              color: white;
+              font-family: "Franklin Gothic Medium", "Arial Narrow", Arial,
+                sans-serif;
+              letter-spacing: 4px;
+              text-transform: uppercase;
+            }
+            h3 {
+              color: white;
+              font-size: 1.2vw;
+            }
+            p {
+              color: white;
+              font-size: 1.1vw;
+            }
+            span {
+              color: gold;
+              font-size: 1.1vw;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  div.works-page {
+    background-color: black;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow: visible;
+    div.works-container {
+      position: relative;
+      top: 110px;
+      padding: 25px;
+      box-sizing: border-box;
+      div.works-category-buttons {
+        button {
+          padding: 15px 30px;
+          margin-right: 15px;
+          background-color: #232323;
+          color: white;
+          border: 0;
+          border-radius: 10px;
+          font-size: 1.3vw;
+          text-transform: uppercase;
+          font-family: "Franklin Gothic Medium", "Arial Narrow", Arial,
+            sans-serif;
+          cursor: pointer;
+          transition: 300ms;
+          border: 2px solid #232323;
+        }
+        button:hover {
+          border: 2px solid gold;
+        }
+      }
+      div.works-cards {
+        box-sizing: border-box;
+        width: 100%;
+        margin-top: 30px;
+        div.work-card {
+          padding: 45px;
+          box-sizing: border-box;
+          display: flex;
+          background: linear-gradient(to top left, #232323 60%, #424242);
+          justify-content: flex-start;
+          align-items: flex-start;
+          margin-top: 30px;
+          border-radius: 15px;
+          div.work-image {
+            width: 35%;
+            img {
+              width: 100%;
+              border-radius: 15px;
+            }
+          }
+          div.work-description {
+            padding: 0 25px;
+            h2 {
+              font-size: 2.5vw;
+              color: white;
+              font-family: "Franklin Gothic Medium", "Arial Narrow", Arial,
+                sans-serif;
+              letter-spacing: 4px;
+              text-transform: uppercase;
+            }
+            h3 {
+              color: white;
+              font-size: 1.2vw;
+            }
+            p {
+              color: white;
+              font-size: 1.1vw;
+            }
+            span {
+              color: gold;
+              font-size: 1.1vw;
+            }
+          }
+        }
+      }
+    }
+  }
+}

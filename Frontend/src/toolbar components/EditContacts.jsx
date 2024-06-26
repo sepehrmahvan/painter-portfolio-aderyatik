@@ -24,7 +24,7 @@ export default function EditContacts() {
 
   //   gallery store
 
-  const { galleryStore } = useContext(MyContext);
+  const { galleryStore, refreshing, refreshGalleryStore } = useContext(MyContext);
 
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -38,9 +38,9 @@ export default function EditContacts() {
     }
   };
 
-  //   const handleRefresh = () => {
-  //     refreshGalleryStore();
-  //   };
+    const handleRefresh = () => {
+      refreshGalleryStore();
+    };
 
   const gallerySection = galleryStore.map((imageUrl, index) => (
     <div
@@ -155,9 +155,9 @@ export default function EditContacts() {
         <form onSubmit={contactHandler}>
           {/* gallery store */}
           <h4>choose images from your gallery</h4>
-          {/* <span onClick={handleRefresh} className="refresh-button">
+          <span onClick={handleRefresh} className="refresh-button">
             {refreshing ? "Refreshing..." : "Refresh Gallery"}
-          </span> */}
+          </span>
           <div className="gallery-store">{gallerySection}</div>
           <h4>email</h4>
           <input

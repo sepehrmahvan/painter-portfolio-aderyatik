@@ -1,4 +1,5 @@
-div.login-error-page{
+@media screen and (min-width: 320px) {
+  div.login-error-page {
     width: 100%;
     height: 100vh;
     margin: 0;
@@ -9,13 +10,110 @@ div.login-error-page{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    span{
-        font-size: 3vw;
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        text-transform: uppercase;
+    span {
+      font-size: 5vw;
+      font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      text-transform: uppercase;
     }
-    span.error-icon{
-        font-size: 12vw;
-        color: red;
+    span.error-icon {
+      font-size: 24vw;
+      color: red;
     }
+  }
+}
+
+@media screen and (min-width: 576px) {
+  div.login-error-page {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    span {
+      font-size: 3vw;
+      font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      text-transform: uppercase;
+    }
+    span.error-icon {
+      font-size: 12vw;
+      color: red;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  div.login-error-page {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    span {
+      font-size: 3vw;
+      font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      text-transform: uppercase;
+    }
+    span.error-icon {
+      font-size: 12vw;
+      color: red;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  div.login-error-page {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    span {
+      font-size: 3vw;
+      font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      text-transform: uppercase;
+    }
+    span.error-icon {
+      font-size: 12vw;
+      color: red;
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  div.login-error-page {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    span {
+      font-size: 3vw;
+      font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+      text-transform: uppercase;
+    }
+    span.error-icon {
+      font-size: 12vw;
+      color: red;
+    }
+  }
 }

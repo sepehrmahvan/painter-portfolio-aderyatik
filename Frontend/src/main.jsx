@@ -10,6 +10,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Login } from "./pages/Login";
 import { UpdatePassword } from "./pages/UpdatePassword";
 import { LoginError } from "./pages/LoginError";
+import { WorksPage } from "./pages/WorksPage";
+import { VideosPage } from "./pages/VideosPage";
 
 const token = localStorage.getItem("token");
 
@@ -21,6 +23,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/toolbar" element={token ? <Toolbar/> : <LoginError/>}/>
         <Route path="login" element={<Login/>}/>
         <Route path="/update-password" element={<UpdatePassword/>}/>
+        <Route path="/works" element={<WorksPage/>}/>
+        <Route path="/video-arts" element={<VideosPage/>}/>
       </Routes>
       <ToastContainer/>
     </BrowserRouter>

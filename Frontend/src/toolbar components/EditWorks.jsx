@@ -39,7 +39,7 @@ export default function EditWorks() {
 
   //   gallery store
 
-  const { galleryStore } = useContext(MyContext);
+  const { galleryStore, refreshGalleryStore, refreshing } = useContext(MyContext);
 
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -53,9 +53,9 @@ export default function EditWorks() {
     }
   };
 
-  //   const handleRefresh = () => {
-  //     refreshGalleryStore();
-  //   };
+    const handleRefresh = () => {
+      refreshGalleryStore();
+    };
 
   const gallerySection = galleryStore.map((imageUrl, index) => (
     <div
@@ -191,9 +191,9 @@ export default function EditWorks() {
             />
             {/* gallery store */}
             <h4>choose images from your gallery</h4>
-            {/* <span onClick={handleRefresh} className="refresh-button">
+            <span onClick={handleRefresh} className="refresh-button">
             {refreshing ? "Refreshing..." : "Refresh Gallery"}
-          </span> */}
+          </span>
             <div className="gallery-store">{gallerySection}</div>
             {/* text editor */}
             <h4>statement</h4>

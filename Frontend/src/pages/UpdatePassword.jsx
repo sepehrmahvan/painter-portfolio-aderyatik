@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import "./UpdatePassword.scss";
+import { Link } from "react-router-dom";
 
 export const UpdatePassword = () => {
   const [oldPassword, setOldPassword] = useState("");
@@ -35,6 +36,9 @@ export const UpdatePassword = () => {
               }),
             }
           );
+          const result = response.json();
+          console.log(result);
+          toast.success("password has been changes succesfully")
         } catch (error) {
           toast.error(error);
         }
@@ -74,6 +78,7 @@ export const UpdatePassword = () => {
           placeholder="email"
           onChange={(e) => setEmail(e.target.value)}
         />
+        <Link to={'/login'}>Login</Link>
         <br />
         <button type="submit">change password</button>
       </form>

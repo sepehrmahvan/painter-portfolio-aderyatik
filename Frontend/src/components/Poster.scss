@@ -1,6 +1,155 @@
-@import '../main.scss';
+@import "../main.scss";
 
-div.poster{
+@media screen and (min-width: 320px) {
+    div.poster {
+      width: 100%;
+      height: 100vh;
+      background-repeat: no-repeat !important;
+      background-size: cover !important;
+      background-attachment: fixed !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      div.poster-text {
+        text-align: center;
+        margin-left: 30px;
+        h3 {
+          color: rgb(194, 194, 194);
+          letter-spacing: 3px;
+          font-size: 3.5vw;
+          font-weight: 100;
+        }
+        h1 {
+          font-size: 5vw;
+          letter-spacing: 8px;
+          color: $second-color;
+          margin: 50px 0;
+          font-weight: 900;
+          text-transform: uppercase;
+        }
+        h2 {
+          font-size: 3.5vw;
+          color: rgb(194, 194, 194);
+          letter-spacing: 3px;
+          font-weight: 100;
+        }
+      }
+    }
+  }
+
+@media screen and (min-width: 576px) {
+    div.poster {
+      width: 100%;
+      height: 100vh;
+      background-repeat: no-repeat !important;
+      background-size: cover !important;
+      background-attachment: fixed !important;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      div.poster-text {
+        text-align: left;
+        margin-left: 30px;
+        h3 {
+          color: rgb(194, 194, 194);
+          letter-spacing: 3px;
+          font-size: 2.5vw;
+          font-weight: 100;
+        }
+        h1 {
+          font-size: 4vw;
+          letter-spacing: 8px;
+          color: $second-color;
+          margin: 50px 0;
+          font-weight: 900;
+          text-transform: uppercase;
+        }
+        h2 {
+          font-size: 2.5vw;
+          color: rgb(194, 194, 194);
+          letter-spacing: 3px;
+          font-weight: 100;
+        }
+      }
+    }
+  }
+
+@media screen and (min-width: 768px) {
+    div.poster {
+      width: 100%;
+      height: 100vh;
+      background-repeat: no-repeat !important;
+      background-size: cover !important;
+      background-attachment: fixed !important;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      div.poster-text {
+        text-align: left;
+        margin-left: 30px;
+        h3 {
+          color: rgb(194, 194, 194);
+          letter-spacing: 3px;
+          font-size: 2vw;
+          font-weight: 100;
+        }
+        h1 {
+          font-size: 3.5vw;
+          letter-spacing: 8px;
+          color: $second-color;
+          margin: 50px 0;
+          font-weight: 900;
+          text-transform: uppercase;
+        }
+        h2 {
+          font-size: 2vw;
+          color: rgb(194, 194, 194);
+          letter-spacing: 3px;
+          font-weight: 100;
+        }
+      }
+    }
+  }
+
+@media screen and (min-width: 1024px) {
+    div.poster {
+      width: 100%;
+      height: 100vh;
+      background-repeat: no-repeat !important;
+      background-size: cover !important;
+      background-attachment: fixed !important;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      div.poster-text {
+        text-align: left;
+        margin-left: 30px;
+        h3 {
+          color: rgb(194, 194, 194);
+          letter-spacing: 3px;
+          font-size: 1.5vw;
+          font-weight: 100;
+        }
+        h1 {
+          font-size: 3vw;
+          letter-spacing: 8px;
+          color: $second-color;
+          margin: 50px 0;
+          font-weight: 900;
+          text-transform: uppercase;
+        }
+        h2 {
+          font-size: 1.5vw;
+          color: rgb(194, 194, 194);
+          letter-spacing: 3px;
+          font-weight: 100;
+        }
+      }
+    }
+  }
+
+@media screen and (min-width: 1200px) {
+  div.poster {
     width: 100%;
     height: 100vh;
     background-repeat: no-repeat !important;
@@ -9,42 +158,29 @@ div.poster{
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    div.poster-text{
-        text-align: left;
-        margin-left: 30px;
-        h3{
-            color: rgb(194, 194, 194);
-            letter-spacing: 3px;
-            font-size: 1.5vw;
-            font-weight: 100;
-        }
-        h1{
-            font-size: 3vw;
-            letter-spacing: 8px;
-            color: $second-color;
-            margin: 50px 0;
-            font-weight: 900;
-        }
-        h2{
-            font-size: 1.5vw;
-            color: rgb(194, 194, 194);
-            letter-spacing: 3px;
-            font-weight: 100;
-        }
-        a{
-            font-size: 1.3vw;
-            display: inline-block;
-            margin-top: 30px;
-            text-decoration: none;
-            padding: 15px 35px;
-            border: 2px solid $second-color;
-            color: $second-color;
-            letter-spacing: 4px;
-            transition: 300ms;
-        }
-        a:hover{
-            border: 2px solid $third-color;
-            color: $third-color;
-        }
+    div.poster-text {
+      text-align: left;
+      margin-left: 30px;
+      h3 {
+        color: rgb(194, 194, 194);
+        letter-spacing: 3px;
+        font-size: 1.5vw;
+        font-weight: 100;
+      }
+      h1 {
+        font-size: 3vw;
+        letter-spacing: 8px;
+        color: $second-color;
+        margin: 50px 0;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+      h2 {
+        font-size: 1.5vw;
+        color: rgb(194, 194, 194);
+        letter-spacing: 3px;
+        font-weight: 100;
+      }
     }
+  }
 }

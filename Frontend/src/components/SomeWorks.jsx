@@ -14,22 +14,22 @@ export default function SomeWorks() {
   const { worksData } = useContext(MyContext);
 
   const items = worksData.map((item) => (
-    <div key={item.id} className="work-item">
-        <img src={item.image} alt="my-work" />
+    <div key={item._id} className="work-item">
+      <img src={`http://localhost:5000/${item.workSampleURL}`} alt="my-work" />
     </div>
-  ))
+  ));
 
   const responsive = {
     0: { items: 1 },
     469: { items: 2 },
-    580: { items: 3 },
+    768: { items: 3 },
     1024: { items: 4 },
   };
   return (
     <div className="some-works">
       <div className="some-works-title">
         <h2>EXPLORE SOME OF MY WORKS</h2>
-        <Link to={"/"}>SEE MORE</Link>
+        <Link to={"/works"}>SEE MORE</Link>
       </div>
       <div className="some-works-slider">
       <AliceCarousel

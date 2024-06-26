@@ -12,35 +12,40 @@ export default function Contact() {
 
   const { contactData } = useContext(MyContext);
 
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(contactData.SocialMediaEmail);
+    alert("Email copied to clipboard!");
+  };
+
   return (
-    <div className="contact">
+    <div id="contact-me" className="contact">
       <div className="contact-description">
         <h2>CONTACT ME</h2>
         <div className="contacts-container">
           <div className="contact-info">
             <p className="contact-icon"><MdOutlineMailOutline /></p>
-            <p className="contact-text">{contactData.email}</p>
+            <p onClick={handleCopyEmail} className="contact-text">{contactData.SocialMediaEmail}</p>
           </div>
           <div className="contact-info">
             <p className="contact-icon"><FaPinterestP /></p>
-            <a href={contactData.pinterest} className="contact-text">Pinterest</a>
+            <a href={contactData.SocialMediaPintrest} className="contact-text">Pinterest</a>
           </div>
           <div className="contact-info">
             <p className="contact-icon"><TiSocialLinkedin /></p>
-            <a href={contactData.linkedin} className="contact-text">LinkedIn</a>
+            <a href={contactData.SocialMediaLinkdin} className="contact-text">LinkedIn</a>
           </div>
           <div className="contact-info">
             <p className="contact-icon"><FaYoutube /></p>
-            <a href={contactData.youtube} className="contact-text">Youtube</a>
+            <a href={contactData.SocialMediaYoutube} className="contact-text">Youtube</a>
           </div>
           <div className="contact-info">
             <p className="contact-icon"><FaInstagram /></p>
-            <a href={contactData.instagram} className="contact-text">Instagram</a>
+            <a href={contactData.SocialMediaInstagram} className="contact-text">Instagram</a>
           </div>
         </div>
       </div>
       <div className="contact-image">
-        <img src={contactData.image} alt="" />
+        <img src={`http://localhost:5000/${contactData.SocialMediaURL}`} alt="" />
       </div>
     </div>
   );

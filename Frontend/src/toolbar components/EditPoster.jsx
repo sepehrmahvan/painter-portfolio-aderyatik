@@ -15,7 +15,8 @@ export default function EditPoster() {
 
   const [Modal, setModal] = useState("none");
 
-  const { galleryStore, refreshing } = useContext(MyContext);
+  const { galleryStore, refreshing, refreshGalleryStore } =
+    useContext(MyContext);
 
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -29,9 +30,9 @@ export default function EditPoster() {
     }
   };
 
-  //   const handleRefresh = () => {
-  //     refreshGalleryStore();
-  //   };
+  const handleRefresh = () => {
+    refreshGalleryStore();
+  };
 
   const gallerySection = galleryStore.map((imageUrl, index) => (
     <div
@@ -57,7 +58,7 @@ export default function EditPoster() {
 
   async function posterHandler(event) {
     event.preventDefault();
-// ! ramtin added
+    // ! ramtin added
     const token = localStorage.getItem("token");
     if (selectedImage !== null) {
       try {
@@ -100,14 +101,15 @@ export default function EditPoster() {
 
   return (
     <div
-      style={{ background: `url(http://localhost:5000/${posterData.headerImage})` }}
+      style={{
+        background: `url(http://localhost:5000/${posterData.headerImage})`,
+      }}
       className="poster"
     >
       <div className="poster-text">
         <h3>{posterData.jobTitle}</h3>
         <h1>{posterData.nameTitle}</h1>
         <h2>{posterData.sloganTitle}</h2>
-        <a href={posterData.cv}>DOWNLOAD CV</a>
       </div>
       <button onClick={() => setModal("flex")} className="edit edit-poster">
         <MdEdit />
@@ -117,9 +119,9 @@ export default function EditPoster() {
         <form onSubmit={posterHandler}>
           {/* gallery store */}
           <h4>choose image from your gallery</h4>
-          {/* <span onClick={handleRefresh} className="refresh-button">
+          <span onClick={handleRefresh} className="refresh-button">
             {refreshing ? "Refreshing..." : "Refresh Gallery"}
-          </span> */}
+          </span>
           <div className="gallery-store">{gallerySection}</div>
           {/* job editor */}
           <h4>edit your job title text</h4>
@@ -148,9 +150,6 @@ export default function EditPoster() {
             placeholder="slogan"
             value={slogan}
           />
-          <h4>upload pdf file of your resume</h4>
-          <input type="file" />
-          <span className="upload-cv">Upload Cv</span>
           <button className="save" type="submit">
             save changes
           </button>
