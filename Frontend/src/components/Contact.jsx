@@ -45,7 +45,7 @@ export default function Contact() {
         </div>
       </div>
       <div className="contact-image">
-        <img src={`http://localhost:5000/${contactData.SocialMediaURL}`} alt="" />
+        <img src={`https://api.aderyatik.com/api/${contactData.SocialMediaURL}`} alt="" />
       </div>
     </div>
   );

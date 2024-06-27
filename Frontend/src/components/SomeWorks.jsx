@@ -15,7 +15,7 @@ export default function SomeWorks() {
 
   const items = worksData.map((item) => (
     <div key={item._id} className="work-item">
-      <img src={`http://localhost:5000/${item.workSampleURL}`} alt="my-work" />
+      <img src={`https://api.aderyatik.com/api/${item.workSampleURL}`} alt="my-work" />
     </div>
   ));
 

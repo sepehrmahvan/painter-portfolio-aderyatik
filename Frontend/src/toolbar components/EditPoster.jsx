@@ -45,7 +45,7 @@ export default function EditPoster() {
         style={{
           border: selectedImage === imageUrl ? "2px solid blue" : "none",
         }}
-        src={`http://localhost:5000/${imageUrl?.direction}`}
+        src={`https://api.aderyatik.com/api/${imageUrl?.direction}`}
         alt="image"
       />
       {selectedImage === imageUrl && (
@@ -69,7 +69,7 @@ export default function EditPoster() {
           jobTitle: job,
         };
         const response = await fetch(
-          "http://localhost:5000/api/update-header",
+          "https://api.aderyatik.com/api/update-header",
           {
             method: "PUT",
             headers: {
@@ -102,7 +102,7 @@ export default function EditPoster() {
   return (
     <div
       style={{
-        background: `url(http://localhost:5000/${posterData.headerImage})`,
+        background: `url(https://api.aderyatik.com/api/${posterData.headerImage})`,
       }}
       className="poster"
     >

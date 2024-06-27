@@ -53,7 +53,7 @@ export default function EditContacts() {
         style={{
           border: selectedImage === imageUrl.direction ? "2px solid blue" : "none",
         }}
-        src={`http://localhost:5000/${imageUrl.direction}`}
+        src={`https://api.aderyatik.com/api/${imageUrl.direction}`}
         alt="image"
       />
       {selectedImage === imageUrl.direction && (
@@ -80,7 +80,7 @@ export default function EditContacts() {
     const SocialMediaYoutube = youtube;
     const token = localStorage.getItem("token");
     try {
-      const response = await fetch("http://localhost:5000/api/update-Socialmedia", {
+      const response = await fetch("https://api.aderyatik.com/api/update-Socialmedia", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -145,7 +145,7 @@ export default function EditContacts() {
         </div>
       </div>
       <div className="contact-image">
-        <img src={`http://localhost:5000/${contactData.SocialMediaURL}`} alt="" />
+        <img src={`https://api.aderyatik.com/api/${contactData.SocialMediaURL}`} alt="" />
       </div>
       <button onClick={() => setModal("flex")} className="edit edit-contacts">
         <MdEdit />

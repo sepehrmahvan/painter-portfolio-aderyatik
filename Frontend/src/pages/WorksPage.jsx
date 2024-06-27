@@ -31,7 +31,7 @@ export const WorksPage = () => {
     <div key={index} className="work-card">
       <div className="work-image">
         <img
-          src={`http://localhost:5000/${work.workSampleURL}`}
+          src={`https://api.aderyatik.com/api/${work.workSampleURL}`}
           alt="aderyatik paint"
         />
       </div>

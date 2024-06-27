@@ -21,7 +21,7 @@ export const UpdatePassword = () => {
       if (newPassword === confirmPassword) {
         try {
           const response = await fetch(
-            "http://localhost:5000/api/updatepassword",
+            "https://api.aderyatik.com/api/updatepassword",
             {
               method: "PUT",
               headers: {

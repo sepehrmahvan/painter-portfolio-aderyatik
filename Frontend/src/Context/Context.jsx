@@ -16,7 +16,7 @@ const MyProvider = ({ children }) => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("http://localhost:5000/api/get-image");
+        const response = await fetch("https://api.aderyatik.com/api/get-image");
         const result = await response.json();
         setGalleryStore(result);
       } catch (error) {
@@ -32,7 +32,7 @@ const MyProvider = ({ children }) => {
   const refreshGalleryStore = async () => {
     setRefreshing(true)
     try {
-      const response = await fetch("http://localhost:5000/api/get-image");
+      const response = await fetch("https://api.aderyatik.com/api/get-image");
       const result = await response.json();
       setGalleryStore(result);
       setRefreshing(false)
@@ -42,7 +42,7 @@ const MyProvider = ({ children }) => {
   }
   // logo
   useEffect(() => {
-    fetch("http://localhost:5000/api/get-logo").then(res => res.json()).then(res => setLogoData(res.FoundLogo.logoURL));
+    fetch("https://api.aderyatik.com/api/get-logo").then(res => res.json()).then(res => setLogoData(res.FoundLogo.logoURL));
   }, [])
   const [logoData, setLogoData] = useState(logoImage);
 
@@ -50,7 +50,7 @@ const MyProvider = ({ children }) => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("http://localhost:5000/api/get-header");
+        const response = await fetch("https://api.aderyatik.com/api/get-header");
         const result = await response.json();
         console.log(result, "get poster");
         if(result){
@@ -74,7 +74,7 @@ const MyProvider = ({ children }) => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("http://localhost:5000/api/get-about");
+        const response = await fetch("https://api.aderyatik.com/api/get-about");
         const result = await response.json();
         console.log(result, "get about");
         if(result){
@@ -95,7 +95,7 @@ const MyProvider = ({ children }) => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("http://localhost:5000/api/get-work");
+        const response = await fetch("https://api.aderyatik.com/api/get-work");
         const result = await response.json();
         console.log(result, "get works");
         if(result){
@@ -114,7 +114,7 @@ const MyProvider = ({ children }) => {
   useEffect(() => {
       async function fetchData() {
         try {
-          const response = await fetch("http://localhost:5000/api/get-youtube");
+          const response = await fetch("https://api.aderyatik.com/api/get-youtube");
           const result = await response.json();
           console.log(result, "get videos");
           if(result){
@@ -154,7 +154,7 @@ const MyProvider = ({ children }) => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("http://localhost:5000/api/get-Socialmedia");
+        const response = await fetch("https://api.aderyatik.com/api/get-Socialmedia");
         const result = await response.json();
         console.log(result, "get contacts");
         if(result){

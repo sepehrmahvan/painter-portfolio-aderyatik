@@ -19,7 +19,7 @@ export default function EditWorks() {
 
   const items = worksData.map((item) => (
     <div key={item._id} className="work-item">
-      <img src={`http://localhost:5000/${item.workSampleURL}`} alt="my-work" />
+      <img src={`https://api.aderyatik.com/api/${item.workSampleURL}`} alt="my-work" />
     </div>
   ));
 
@@ -69,7 +69,7 @@ export default function EditWorks() {
           border:
             selectedImage === imageUrl.direction ? "2px solid blue" : "none",
         }}
-        src={`http://localhost:5000/${imageUrl.direction}`}
+        src={`https://api.aderyatik.com/api/${imageUrl.direction}`}
         alt="image"
       />
       {selectedImage === imageUrl.direction && (
@@ -83,7 +83,7 @@ export default function EditWorks() {
   const handleDelete = async (id) => {
     const token = localStorage.getItem("token");
     try {
-      const response = await fetch("http://localhost:5000/api/delete-work", {
+      const response = await fetch("https://api.aderyatik.com/api/delete-work", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -127,7 +127,7 @@ export default function EditWorks() {
       statement !== ""
     ) {
       try {
-        const response = await fetch("http://localhost:5000/api/add-work", {
+        const response = await fetch("https://api.aderyatik.com/api/add-work", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

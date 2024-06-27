@@ -24,7 +24,7 @@ export default function EditAbout() {
         const About = {
           about: aboutData.aboutText,
         };
-        const response = await fetch("http://localhost:5000/api/update-about", {
+        const response = await fetch("https://api.aderyatik.com/api/update-about", {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",

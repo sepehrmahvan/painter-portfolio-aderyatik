@@ -24,7 +24,7 @@ export default function EdittVideos() {
   const handleDelete = async (id) => {
     const token = localStorage.getItem("token");
     try {
-      const response = await fetch("http://localhost:5000/api/delete-youtube", {
+      const response = await fetch("https://api.aderyatik.com/api/delete-youtube", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -57,7 +57,7 @@ export default function EdittVideos() {
     const token = localStorage.getItem("token");
     if (name !== "" && link !== "" && statement !== "") {
       try {
-        const response = await fetch("http://localhost:5000/api/add-youtube", {
+        const response = await fetch("https://api.aderyatik.com/api/add-youtube", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -42,7 +42,7 @@ export default function EditLogo() {
     if (selectedImage) {
       try {
         const logoData = selectedImage.direction;
-        const response = await fetch("http://localhost:5000/api/update-logo", {
+        const response = await fetch("https://api.aderyatik.com/api/update-logo", {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -75,7 +75,7 @@ export default function EditLogo() {
         }}
         //? ramtin Added
         // ../../../Backend/uploads/
-        src={`http://localhost:5000/${imageUrl?.direction}`}
+        src={`https://api.aderyatik.com/api/${imageUrl?.direction}`}
         alt="image"
       />
       {/* {console.log(`http://localhost:5000/${imageUrl?.direction}`,"imageUrl.direction")} */}
@@ -88,8 +88,10 @@ export default function EditLogo() {
   ));
 
   const [Image, setImage] = useState(null);
-  const handleAddToGallery = async () => {
+  const handleAddToGallery = async (e) => {
+    e.preventDefault();
     const token = localStorage.getItem("token");
+    console.log(token, "token");
     try {
       if (!Image) {
         console.log("No image selected.");
@@ -97,7 +99,7 @@ export default function EditLogo() {
       }
       const formData = new FormData();
       formData.append("image", Image);
-      const response = await fetch("http://localhost:5000/api/upload-image", {
+      const response = await fetch("https://api.aderyatik.com/api/upload-image", {
         method: "POST",
         headers: {
           Authorization: token,
@@ -106,6 +108,7 @@ export default function EditLogo() {
       });
       if (response.ok) {
         toast.success("Image uploaded successfully!");
+        console.log(response, "response");
         setUploadModal("none");
       } else {
         toast.error("Failed to upload image.");
@@ -156,7 +159,7 @@ export default function EditLogo() {
         </button>
       </div>
       <div className="logo">
-        <img src={`http://localhost:5000/${logoData}`} alt="logo" />
+        <img src={`https://api.aderyatik.com/api/${logoData}`} alt="logo" />
       </div>
       {/* menu */}
       <div style={{ left: showMenu }} className="menu">
