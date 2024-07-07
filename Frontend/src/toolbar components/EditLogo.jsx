@@ -184,7 +184,7 @@ export default function EditLogo() {
             </span>
 
           <div className="gallery-store">{gallerySection}</div>
-          <button onClick={LogoHandler}>
+          <button className="save" onClick={LogoHandler}>
             save changes
           </button>
           <span className="close-modal" onClick={() => setModal("none")}>

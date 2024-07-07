@@ -11,6 +11,8 @@ export default function Header() {
 
   const [showMenu, setShowMenu] = useState("-100%");
 
+  console.log(logoData, "logo");
+
   return (
     <header>
       <button onClick={() => setShowMenu("0")} className="menu-btn">

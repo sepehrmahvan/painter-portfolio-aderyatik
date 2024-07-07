@@ -30,31 +30,51 @@ const MyProvider = ({ children }) => {
   const [refreshing, setRefreshing] = useState(false);
 
   const refreshGalleryStore = async () => {
-    setRefreshing(true)
+    setRefreshing(true);
     try {
       const response = await fetch("https://api.aderyatik.com/api/get-image");
       const result = await response.json();
       setGalleryStore(result);
-      setRefreshing(false)
+      setRefreshing(false);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
-  }
+  };
   // logo
   useEffect(() => {
-    fetch("https://api.aderyatik.com/api/get-logo").then(res => res.json()).then(res => setLogoData(res.FoundLogo.logoURL));
-  }, [])
-  const [logoData, setLogoData] = useState(logoImage);
+    async function fetchData() {
+      try {
+        const response = await fetch(
+          "https://api.aderyatik.com/api/get-logo"
+        );
+        const result = await response.json();
+        console.log(result, "get logo");
+        if (result) {
+          setLogoData(result.FoundLogo.logoURL);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+
+    fetchData();
+  }, []);
+
+  const [logoData, setLogoData] = useState();
+  
+  console.log(logoData, "logo data");
 
   // poster
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("https://api.aderyatik.com/api/get-header");
+        const response = await fetch(
+          "https://api.aderyatik.com/api/get-header"
+        );
         const result = await response.json();
         console.log(result, "get poster");
-        if(result){
-          setPosterData(result)
+        if (result) {
+          setPosterData(result);
         }
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -77,8 +97,8 @@ const MyProvider = ({ children }) => {
         const response = await fetch("https://api.aderyatik.com/api/get-about");
         const result = await response.json();
         console.log(result, "get about");
-        if(result){
-          setAboutdata(result)
+        if (result) {
+          setAboutdata(result);
         }
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -98,8 +118,8 @@ const MyProvider = ({ children }) => {
         const response = await fetch("https://api.aderyatik.com/api/get-work");
         const result = await response.json();
         console.log(result, "get works");
-        if(result){
-          setWorksData(result)
+        if (result) {
+          setWorksData(result);
         }
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -108,25 +128,27 @@ const MyProvider = ({ children }) => {
 
     fetchData(); // Call the async function immediately
   }, []);
-  
+
   const [worksData, setWorksData] = useState([]);
   // video arts
   useEffect(() => {
-      async function fetchData() {
-        try {
-          const response = await fetch("https://api.aderyatik.com/api/get-youtube");
-          const result = await response.json();
-          console.log(result, "get videos");
-          if(result){
-            setVideoArtsData(result)
-          }
-        } catch (error) {
-          console.error("Error fetching data:", error);
+    async function fetchData() {
+      try {
+        const response = await fetch(
+          "https://api.aderyatik.com/api/get-youtube"
+        );
+        const result = await response.json();
+        console.log(result, "get videos");
+        if (result) {
+          setVideoArtsData(result);
         }
+      } catch (error) {
+        console.error("Error fetching data:", error);
       }
-  
-      fetchData(); // Call the async function immediately
-    }, []);
+    }
+
+    fetchData(); // Call the async function immediately
+  }, []);
   const [videoArtsData, setVideoArtsData] = useState([
     {
       id: 1,
@@ -154,11 +176,13 @@ const MyProvider = ({ children }) => {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch("https://api.aderyatik.com/api/get-Socialmedia");
+        const response = await fetch(
+          "https://api.aderyatik.com/api/get-Socialmedia"
+        );
         const result = await response.json();
         console.log(result, "get contacts");
-        if(result){
-          setContactData(result)
+        if (result) {
+          setContactData(result);
         }
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -229,7 +253,7 @@ const MyProvider = ({ children }) => {
       instagram: instagram,
     });
   };
-  
+
   // context value --------------------------------------------------
   const contextValue = {
     // gallery
