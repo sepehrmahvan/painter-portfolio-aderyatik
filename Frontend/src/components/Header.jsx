@@ -26,7 +26,7 @@ export default function Header() {
         <a href="#contact-me">CONTACT</a>
       </nav>
       <div className="logo">
-        <img src={`https://api.aderyatik.com/api/${logoData}`} alt="" />
+        <img src={`https://api.aderyatik.com/${logoData}`} alt="" />
       </div>
       {/* menu */}
       <div style={{left: showMenu}} className="menu">

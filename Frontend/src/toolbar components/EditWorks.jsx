@@ -19,7 +19,7 @@ export default function EditWorks() {
 
   const items = worksData.map((item) => (
     <div key={item._id} className="work-item">
-      <img src={`https://api.aderyatik.com/api/${item.workSampleURL}`} alt="my-work" />
+      <img src={`https://api.aderyatik.com/${item.workSampleURL}`} alt="my-work" />
     </div>
   ));
 
@@ -69,7 +69,7 @@ export default function EditWorks() {
           border:
             selectedImage === imageUrl.direction ? "2px solid blue" : "none",
         }}
-        src={`https://api.aderyatik.com/api/${imageUrl.direction}`}
+        src={`https://api.aderyatik.com/${imageUrl.direction}`}
         alt="image"
       />
       {selectedImage === imageUrl.direction && (
