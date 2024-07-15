@@ -15,11 +15,9 @@ export default function EdittVideos() {
       : null;
 
   const [Modal, setModal] = useState("none");
-
   const [name, setName] = useState("");
   const [link, setLink] = useState("");
   const [statement, setStatement] = useState("");
-  const [category, setCategory] = useState("");
 
   const handleDelete = async (id) => {
     const token = localStorage.getItem("token");
@@ -63,11 +61,10 @@ export default function EdittVideos() {
             "Content-Type": "application/json",
             Authorization: token,
           },
-          body: JSON.stringify({title, YoutubeURL, statement, category}),
+          body: JSON.stringify({title, YoutubeURL, statement}),
         });
 
         const result = await response.json();
-        console.log(result);
         if(result){
           toast.success("video art has been added succesfully");
         }
@@ -130,13 +127,6 @@ export default function EdittVideos() {
             placeholder="statement"
             className="content"
           ></textarea>
-          <h4>category</h4>
-          <input
-            onChange={(e) => setCategory(e.target.value)}
-            type="text"
-            placeholder="category"
-            className="content"
-          />
           <span onClick={videoHandler} className="add-card-btn">
             add work
           </span>
