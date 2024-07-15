@@ -45,7 +45,7 @@ export default function EditPoster() {
         style={{
           border: selectedImage === imageUrl ? "2px solid blue" : "none",
         }}
-        src={`https://api.aderyatik.com/api/${imageUrl?.direction}`}
+        src={`https://api.aderyatik.com/${imageUrl?.direction}`}
         alt="image"
       />
       {selectedImage === imageUrl && (
@@ -102,7 +102,7 @@ export default function EditPoster() {
   return (
     <div
       style={{
-        background: `url(https://api.aderyatik.com/api/${posterData.headerImage})`,
+        background: `url(https://api.aderyatik.com/${posterData.headerImage})`,
       }}
       className="poster"
     >

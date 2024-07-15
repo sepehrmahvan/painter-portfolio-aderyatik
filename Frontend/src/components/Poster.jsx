@@ -6,7 +6,7 @@ export default function Poster() {
 
   const { posterData } = useContext(MyContext);
   return (
-    <div style={{background: `url(https://api.aderyatik.com/api/${posterData.headerImage})`}} className='poster'>
+    <div style={{background: `url(https://api.aderyatik.com/${posterData.headerImage})`}} className='poster'>
         <div className="poster-text">
             <h3>{posterData.jobTitle}</h3>
             <h1>{posterData.nameTitle}</h1>

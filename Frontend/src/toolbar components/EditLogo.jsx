@@ -75,7 +75,7 @@ export default function EditLogo() {
         }}
         //? ramtin Added
         // ../../../Backend/uploads/
-        src={`https://api.aderyatik.com/api/${imageUrl?.direction}`}
+        src={`https://api.aderyatik.com/${imageUrl?.direction}`}
         alt="image"
       />
       {/* {console.log(`http://localhost:5000/${imageUrl?.direction}`,"imageUrl.direction")} */}
@@ -159,7 +159,7 @@ export default function EditLogo() {
         </button>
       </div>
       <div className="logo">
-        <img src={`https://api.aderyatik.com/api/${logoData}`} alt="logo" />
+        <img src={`https://api.aderyatik.com/${logoData}`} alt="logo" />
       </div>
       {/* menu */}
       <div style={{ left: showMenu }} className="menu">

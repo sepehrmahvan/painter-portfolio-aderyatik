@@ -53,7 +53,7 @@ export default function EditContacts() {
         style={{
           border: selectedImage === imageUrl.direction ? "2px solid blue" : "none",
         }}
-        src={`https://api.aderyatik.com/api/${imageUrl.direction}`}
+        src={`https://api.aderyatik.com/${imageUrl.direction}`}
         alt="image"
       />
       {selectedImage === imageUrl.direction && (
@@ -145,7 +145,7 @@ export default function EditContacts() {
         </div>
       </div>
       <div className="contact-image">
-        <img src={`https://api.aderyatik.com/api/${contactData.SocialMediaURL}`} alt="" />
+        <img src={`https://api.aderyatik.com/${contactData.SocialMediaURL}`} alt="" />
       </div>
       <button onClick={() => setModal("flex")} className="edit edit-contacts">
         <MdEdit />
